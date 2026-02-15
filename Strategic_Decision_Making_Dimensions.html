@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategic Decision-Making - Three Dimensions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #2B5797;
+            --light-blue: #D5E8F0;
+            --light-green: #E8F5E9;
+            --light-orange: #FFF3E0;
+            --light-purple: #F3E5F5;
+            --yellow-box: #FFF9E6;
+            --gray-text: #555555;
+            --border-color: #CCCCCC;
+        }
+
+        body {
+            font-family: 'Source Sans 3', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 20px 30px;
+            margin: -40px -40px 30px -40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-text h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .header-text h2 {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            opacity: 0.95;
+        }
+
+        .header .icon {
+            font-size: 32px;
+        }
+
+        h2 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 22px;
+            font-weight: 700;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .definition-box {
+            background: white;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .definition-box p {
+            font-size: 16px;
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .definition-box .french {
+            font-style: italic;
+            color: var(--gray-text);
+            font-size: 14px;
+        }
+
+        .dimension-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .dimension-card {
+            border: 1px solid var(--border-color);
+            padding: 25px 20px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .dimension-card.blue {
+            background: var(--light-blue);
+        }
+
+        .dimension-card.green {
+            background: var(--light-green);
+        }
+
+        .dimension-card.orange {
+            background: var(--light-orange);
+        }
+
+        .dimension-card .emoji {
+            font-size: 28px;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .dimension-card .dimension-name {
+            display: block;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 8px;
+            font-family: 'Merriweather', serif;
+        }
+
+        .dimension-card .dimension-subtitle {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-text);
+        }
+
+        .info-box {
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+
+        .info-box.blue {
+            background: var(--light-blue);
+        }
+
+        .info-box.green {
+            background: var(--light-green);
+        }
+
+        .info-box.orange {
+            background: var(--light-orange);
+        }
+
+        .info-box.purple {
+            background: var(--light-purple);
+        }
+
+        .info-box h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .info-box p {
+            font-size: 15px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .info-box li {
+            font-size: 15px;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .info-box strong {
+            font-weight: 700;
+        }
+
+        .section-title {
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-top: 18px;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .focus-item {
+            margin-bottom: 10px;
+        }
+
+        .focus-item strong {
+            color: var(--primary-blue);
+        }
+
+        .example-box {
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .example-box.blue {
+            background: var(--light-blue);
+        }
+
+        .example-box.green {
+            background: var(--light-green);
+        }
+
+        .example-box h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .example-box h4 {
+            font-weight: 700;
+            font-size: 16px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+        }
+
+        .example-box p {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .example-box ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        .example-box li {
+            font-size: 15px;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .vocab-table thead {
+            background: var(--yellow-box);
+        }
+
+        .vocab-table th {
+            padding: 12px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .vocab-table td {
+            border: 1px solid var(--border-color);
+            padding: 10px 15px;
+            font-size: 15px;
+        }
+
+        .vocab-table td:first-child {
+            font-weight: 700;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+                padding: 20px;
+            }
+
+            .header {
+                margin: -20px -20px 20px -20px;
+            }
+
+            h2 {
+                page-break-after: avoid;
+            }
+
+            .info-box, .example-box {
+                page-break-inside: avoid;
+            }
+
+            .dimension-grid {
+                page-break-inside: avoid;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .header {
+                margin: -20px -20px 20px -20px;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .header-text h1 {
+                font-size: 20px;
+            }
+
+            .header-text h2 {
+                font-size: 16px;
+            }
+
+            .dimension-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-text">
+                <h1>STRATEGIC DECISION-MAKING</h1>
+                <h2>Three Dimensions</h2>
+            </div>
+            <div class="icon">⚖️</div>
+        </div>
+
+        <h2>📖 DEFINITION</h2>
+        <div class="definition-box">
+            <p>Strategic decision-making is a complex process that involves multiple dimensions. Good strategic decisions must consider not only economic and technical factors, but also human, social, and organizational aspects.</p>
+            <p class="french">(La prise de décision stratégique est un processus complexe qui implique plusieurs dimensions. Les bonnes décisions stratégiques doivent prendre en compte non seulement les facteurs économiques et techniques, mais aussi les aspects humains, sociaux et organisationnels.)</p>
+        </div>
+
+        <h2>🔷 THE THREE DIMENSIONS</h2>
+        <div class="definition-box">
+            <p>Strategic decision-making follows a <strong>triple dimension approach</strong>. All three dimensions must work together for successful strategic decisions:</p>
+        </div>
+
+        <div class="dimension-grid">
+            <div class="dimension-card blue">
+                <span class="emoji">1️⃣</span>
+                <span class="dimension-name">TECHNICO-ECONOMIC</span>
+                <span class="dimension-subtitle">Viability</span>
+            </div>
+            <div class="dimension-card green">
+                <span class="emoji">2️⃣</span>
+                <span class="dimension-name">SOCIAL & POLITICAL</span>
+                <span class="dimension-subtitle">Human Factor & Power</span>
+            </div>
+            <div class="dimension-card orange">
+                <span class="emoji">3️⃣</span>
+                <span class="dimension-name">BUREAUCRATIC</span>
+                <span class="dimension-subtitle">Organization</span>
+            </div>
+        </div>
+
+        <h2>1️⃣ TECHNICO-ECONOMIC DIMENSION</h2>
+        <div class="definition-box">
+            <p>This dimension focuses on the <strong>technical and economic viability</strong> of strategic decisions. It asks: Is this decision technically possible and economically sound?</p>
+        </div>
+
+        <div class="info-box blue">
+            <h3>Key Questions:</h3>
+            <ul>
+                <li>Is the technology available and reliable?</li>
+                <li>Do we have the technical skills and knowledge?</li>
+                <li>Is the decision financially profitable?</li>
+                <li>What is the return on investment (ROI)?</li>
+                <li>Can we afford the costs?</li>
+                <li>Does it make business sense?</li>
+            </ul>
+
+            <div class="section-title">Focus Areas:</div>
+            <div class="focus-item"><strong>Market analysis:</strong> Demand, competition, market size</div>
+            <div class="focus-item"><strong>Financial feasibility:</strong> Costs, revenues, profitability</div>
+            <div class="focus-item"><strong>Technical capability:</strong> Technology, infrastructure, expertise</div>
+            <div class="focus-item"><strong>Risk assessment:</strong> Financial risks, technical risks, market risks</div>
+        </div>
+
+        <h2>2️⃣ SOCIAL & POLITICAL DIMENSION</h2>
+        <div class="definition-box">
+            <p>This dimension considers the <strong>human and power factors</strong> in decision-making. It recognizes that people, groups, and power relationships influence strategic choices.</p>
+        </div>
+
+        <div class="info-box green">
+            <h3>Key Questions:</h3>
+            <ul>
+                <li>Who will be affected by this decision?</li>
+                <li>Will employees accept and support it?</li>
+                <li>Who has the power to approve or block the decision?</li>
+                <li>Are there conflicts between different groups?</li>
+                <li>How will this impact company culture?</li>
+                <li>What do stakeholders want?</li>
+            </ul>
+
+            <div class="section-title">Focus Areas:</div>
+            <div class="focus-item"><strong>Stakeholder interests:</strong> Employees, managers, shareholders, unions</div>
+            <div class="focus-item"><strong>Power dynamics:</strong> Who influences decisions, coalitions, conflicts</div>
+            <div class="focus-item"><strong>Social acceptance:</strong> Employee morale, community impact, public opinion</div>
+            <div class="focus-item"><strong>Communication:</strong> How to explain and sell the decision internally</div>
+        </div>
+
+        <h2>3️⃣ BUREAUCRATIC DIMENSION</h2>
+        <div class="definition-box">
+            <p>This dimension addresses the <strong>organizational and administrative aspects</strong> of implementing decisions. It asks: Can our organization actually execute this decision?</p>
+        </div>
+
+        <div class="info-box orange">
+            <h3>Key Questions:</h3>
+            <ul>
+                <li>Do we have the organizational structure to implement this?</li>
+                <li>Are processes and procedures in place?</li>
+                <li>Who is responsible for execution?</li>
+                <li>How will we coordinate different departments?</li>
+                <li>What changes are needed in our organization?</li>
+                <li>Do we follow rules and regulations?</li>
+            </ul>
+
+            <div class="section-title">Focus Areas:</div>
+            <div class="focus-item"><strong>Organizational structure:</strong> Departments, hierarchy, reporting lines</div>
+            <div class="focus-item"><strong>Procedures and systems:</strong> Work processes, information flow, documentation</div>
+            <div class="focus-item"><strong>Coordination:</strong> Integration between units, communication channels</div>
+            <div class="focus-item"><strong>Compliance:</strong> Legal requirements, internal policies, standards</div>
+        </div>
+
+        <div style="margin-top: 40px;"></div>
+
+        <div class="info-box purple">
+            <h3>💡 Integration of the Three Dimensions</h3>
+            <p>Good strategic decisions balance all three dimensions. A decision that is economically profitable but socially unacceptable or organizationally impossible will fail. Successful strategy requires considering technical viability, human factors, and organizational capacity together.</p>
+        </div>
+
+        <h2>🏢 MOROCCAN EXAMPLE: Royal Air Maroc Fleet Modernization</h2>
+
+        <div class="example-box blue">
+            <h3>Decision: Purchase new Boeing 787 Dreamliner aircraft</h3>
+
+            <h4>1️⃣ Technico-Economic Dimension:</h4>
+            <ul>
+                <li><strong>Economic viability:</strong> New aircraft reduce fuel costs by 20%, increase passenger capacity, enable new long-haul routes (direct flights to Asia, Americas)</li>
+                <li><strong>Technical feasibility:</strong> Modern technology, better maintenance, improved safety</li>
+                <li><strong>Financial analysis:</strong> High initial investment but long-term profitability through cost savings and revenue growth</li>
+            </ul>
+
+            <h4>2️⃣ Social & Political Dimension:</h4>
+            <ul>
+                <li><strong>Employee concerns:</strong> Pilots and crew need training on new aircraft, some worry about job security with more efficient planes</li>
+                <li><strong>Union negotiations:</strong> Agreements needed on training programs, working conditions on new aircraft</li>
+                <li><strong>Government support:</strong> Strategic decision requires government approval as majority shareholder</li>
+                <li><strong>National pride:</strong> Modern fleet strengthens Morocco's image and tourism industry</li>
+            </ul>
+
+            <h4>3️⃣ Bureaucratic Dimension:</h4>
+            <ul>
+                <li><strong>Organizational changes:</strong> Create new departments for fleet management, establish training centers</li>
+                <li><strong>New procedures:</strong> Develop maintenance schedules, update safety protocols, revise operational manuals</li>
+                <li><strong>Coordination:</strong> Integrate new aircraft into existing fleet operations, coordinate with airports for infrastructure</li>
+                <li><strong>Regulatory compliance:</strong> Meet international aviation standards, obtain certifications, follow procurement regulations</li>
+            </ul>
+        </div>
+
+        <div class="example-box green">
+            <h3>ONCF High-Speed Rail (Al Boraq) Project</h3>
+
+            <p><strong>1️⃣ Technico-Economic:</strong> Massive infrastructure investment, technology transfer from France, economic benefits through reduced travel time and increased business activity</p>
+
+            <p><strong>2️⃣ Social & Political:</strong> National pride project with royal support, concerns from traditional rail workers, positive public perception linking Morocco to Europe</p>
+
+            <p><strong>3️⃣ Bureaucratic:</strong> New ONCF division for high-speed operations, training programs for specialized staff, coordination with multiple government agencies</p>
+        </div>
+
+        <h2>📚 VOCABULARY BOX</h2>
+        
+        <table class="vocab-table">
+            <thead>
+                <tr>
+                    <th>English</th>
+                    <th>Français</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Decision-making</td><td>Prise de décision</td></tr>
+                <tr><td>Dimension</td><td>Dimension</td></tr>
+                <tr><td>Viability</td><td>Viabilité</td></tr>
+                <tr><td>Technico-economic</td><td>Technico-économique</td></tr>
+                <tr><td>Social & political</td><td>Social et politique</td></tr>
+                <tr><td>Bureaucratic</td><td>Bureaucratique</td></tr>
+                <tr><td>Human factor</td><td>Facteur humain</td></tr>
+                <tr><td>Power dynamics</td><td>Dynamiques de pouvoir</td></tr>
+                <tr><td>Stakeholder</td><td>Partie prenante</td></tr>
+                <tr><td>Organizational structure</td><td>Structure organisationnelle</td></tr>
+                <tr><td>Procedure</td><td>Procédure</td></tr>
+                <tr><td>Coordination</td><td>Coordination</td></tr>
+                <tr><td>Compliance</td><td>Conformité</td></tr>
+                <tr><td>Integration</td><td>Intégration</td></tr>
+                <tr><td>Implementation</td><td>Mise en œuvre</td></tr>
+                <tr><td>Feasibility</td><td>Faisabilité</td></tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategic Management Process - Detailed Version</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #2B5797;
+            --light-blue: #D5E8F0;
+            --light-green: #E8F5E9;
+            --light-orange: #FFF3E0;
+            --light-purple: #F3E5F5;
+            --yellow-box: #FFF9E6;
+            --gray-text: #555555;
+            --border-color: #CCCCCC;
+        }
+
+        body {
+            font-family: 'Source Sans 3', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 20px 30px;
+            margin: -40px -40px 30px -40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+        }
+
+        .header .icon {
+            font-size: 32px;
+        }
+
+        h2 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 22px;
+            font-weight: 700;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .definition-box {
+            background: white;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .definition-box p {
+            font-size: 16px;
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .definition-box .french {
+            font-style: italic;
+            color: var(--gray-text);
+            font-size: 14px;
+        }
+
+        .phase-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .phase-card {
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            text-align: center;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .phase-card.blue {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+        }
+
+        .phase-card.green {
+            background: var(--light-green);
+            color: var(--primary-blue);
+        }
+
+        .phase-card.orange {
+            background: var(--light-orange);
+            color: var(--primary-blue);
+        }
+
+        .phase-card .emoji {
+            font-size: 24px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .phase-card .phase-name {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .phase-card .phase-subtitle {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .info-box {
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .info-box.blue {
+            background: var(--light-blue);
+        }
+
+        .info-box.green {
+            background: var(--light-green);
+        }
+
+        .info-box.orange {
+            background: var(--light-orange);
+        }
+
+        .info-box.purple {
+            background: var(--light-purple);
+        }
+
+        .info-box h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .info-box p {
+            font-size: 15px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .info-box li {
+            font-size: 15px;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .info-box strong {
+            font-weight: 700;
+        }
+
+        .info-box em {
+            font-style: italic;
+            color: var(--gray-text);
+        }
+
+        .vrio-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .vrio-table th {
+            background: var(--primary-blue);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .vrio-table td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .vrio-table td:first-child {
+            background: var(--light-blue);
+            font-weight: 700;
+            width: 25%;
+        }
+
+        .vrio-letter {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--primary-blue);
+        }
+
+        .company-example {
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .company-example.blue {
+            background: var(--light-blue);
+        }
+
+        .company-example.green {
+            background: var(--light-green);
+        }
+
+        .company-example h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .company-example h4 {
+            font-weight: 700;
+            font-size: 16px;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            color: var(--primary-blue);
+        }
+
+        .company-example p {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .company-example ul {
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+
+        .company-example li {
+            font-size: 15px;
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .vocab-table thead {
+            background: var(--yellow-box);
+        }
+
+        .vocab-table th {
+            padding: 12px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .vocab-table td {
+            border: 1px solid var(--border-color);
+            padding: 10px 15px;
+            font-size: 15px;
+        }
+
+        .vocab-table td:first-child {
+            font-weight: 700;
+        }
+
+        .section-intro {
+            font-style: italic;
+            color: var(--gray-text);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+                padding: 20px;
+            }
+
+            .header {
+                margin: -20px -20px 20px -20px;
+            }
+
+            h2 {
+                page-break-after: avoid;
+            }
+
+            .info-box, .company-example {
+                page-break-inside: avoid;
+            }
+
+            .phase-grid {
+                page-break-inside: avoid;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .header {
+                margin: -20px -20px 20px -20px;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .phase-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>STRATEGIC MANAGEMENT PROCESS</h1>
+            <div class="icon">🎯</div>
+        </div>
+
+        <h2>📖 DEFINITION</h2>
+        <div class="definition-box">
+            <p>Strategic management is the complete process that companies use to plan, implement, and control their long-term direction. It helps organizations achieve their goals and stay competitive in the market.</p>
+            <p class="french">(Le management stratégique est le processus complet que les entreprises utilisent pour planifier, mettre en œuvre et contrôler leur direction à long terme. Il aide les organisations à atteindre leurs objectifs et à rester compétitives sur le marché.)</p>
+        </div>
+
+        <div class="definition-box">
+            <p>The strategic management process has <strong>three main phases</strong> that work together in a continuous cycle:</p>
+        </div>
+
+        <div class="phase-grid">
+            <div class="phase-card blue">
+                <span class="emoji">1️⃣</span>
+                <span class="phase-name">FORMULATION</span>
+                <span class="phase-subtitle">Planning</span>
+            </div>
+            <div class="phase-card green">
+                <span class="emoji">2️⃣</span>
+                <span class="phase-name">IMPLEMENTATION</span>
+                <span class="phase-subtitle">Action</span>
+            </div>
+            <div class="phase-card orange">
+                <span class="emoji">3️⃣</span>
+                <span class="phase-name">CONTROL</span>
+                <span class="phase-subtitle">Monitoring</span>
+            </div>
+        </div>
+
+        <h2>1️⃣ PHASE 1: FORMULATION (Planning)</h2>
+        <p class="section-intro">This is the <strong>thinking and planning phase</strong>. The company analyzes its situation and decides what strategy to follow.</p>
+
+        <div class="info-box blue">
+            <h3>Step 1: Strategic Diagnosis (Analysis)</h3>
+            <p><em>Understanding the current situation by analyzing two areas:</em></p>
+            
+            <p style="margin-top: 15px;"><strong>A. External Analysis</strong> <em>(What is happening outside the company?)</em></p>
+            <ul>
+                <li>Study the market and industry trends</li>
+                <li>Identify opportunities and threats</li>
+                <li>Analyze competitors and their strategies</li>
+                <li>Look at economic, political, social, and technological changes</li>
+            </ul>
+
+            <p style="margin-top: 15px;"><strong>B. Internal Analysis</strong> <em>(What are the company's strengths and weaknesses?)</em></p>
+            <ul>
+                <li>Evaluate resources and capabilities</li>
+                <li>Assess financial performance</li>
+                <li>Review organizational structure and culture</li>
+                <li>Identify strengths and weaknesses</li>
+            </ul>
+        </div>
+
+        <div class="info-box blue">
+            <h3>Step 2: Setting General Objectives</h3>
+            <p>Defining clear goals that the company wants to achieve in the long term.</p>
+            <p><em>Examples: Increase market share by 20%, expand to 3 new countries, improve customer satisfaction to 90%, reduce costs by 15%</em></p>
+        </div>
+
+        <div class="info-box blue">
+            <h3>Step 3: Determining the Strategic Gap</h3>
+            <p>Identifying the difference between where the company is now and where it wants to be.</p>
+            <p><strong>Formula: Strategic Gap = Desired Position - Current Position</strong></p>
+        </div>
+
+        <div class="info-box blue">
+            <h3>Step 4: Design of Strategic Options</h3>
+            <p>Creating different possible strategies to close the strategic gap.</p>
+            <p><em>Examples: Enter new markets, develop new products, form partnerships, reduce costs, improve quality, acquire competitors</em></p>
+        </div>
+
+        <div class="info-box blue">
+            <h3>Step 5: Evaluation and Selection of Strategy</h3>
+            <p>Analyzing each option and choosing the best strategy based on:</p>
+            <ul>
+                <li>Feasibility (Can we do it?)</li>
+                <li>Acceptability (Do stakeholders agree?)</li>
+                <li>Suitability (Does it fit our situation?)</li>
+                <li>Resources available and risks involved</li>
+            </ul>
+        </div>
+
+        <h2>2️⃣ PHASE 2: IMPLEMENTATION (Action)</h2>
+        <p class="section-intro">This is the <strong>action phase</strong>. The company puts the chosen strategy into practice by organizing resources and people.</p>
+
+        <div class="info-box green">
+            <h3>Key Implementation Elements:</h3>
+            
+            <p style="margin-top: 15px;"><strong>1. Resource Management</strong></p>
+            <p>Allocating and organizing money, people, equipment, and time to support the strategy.</p>
+
+            <p style="margin-top: 15px;"><strong>2. Information Systems</strong></p>
+            <p>Setting up systems to collect, process, and share information needed for decision-making and coordination.</p>
+
+            <p style="margin-top: 15px;"><strong>3. Organizational Design</strong></p>
+            <p>Creating or changing the company structure (departments, teams, reporting lines) to fit the strategy.</p>
+
+            <p style="margin-top: 15px;"><strong>4. Management System</strong></p>
+            <p>Establishing leadership practices, decision-making processes, and performance management systems.</p>
+
+            <p style="margin-top: 15px;"><strong>5. People Behavior and Culture</strong></p>
+            <p>Managing change, motivating employees, building the right culture, and ensuring everyone understands and supports the strategy.</p>
+        </div>
+
+        <h2>3️⃣ PHASE 3: CONTROL (Monitoring)</h2>
+        <p class="section-intro">This is the <strong>monitoring and adjustment phase</strong>. The company checks if the strategy is working and makes corrections when needed.</p>
+
+        <div class="info-box orange">
+            <h3>Two Types of Strategic Control:</h3>
+            
+            <p style="margin-top: 15px;"><strong>1. Implementation Control</strong></p>
+            <p>Checking if the strategy is being executed correctly and achieving the planned results.</p>
+            <p><em>Activities:</em></p>
+            <ul>
+                <li>Measure performance against objectives</li>
+                <li>Compare actual results with targets</li>
+                <li>Identify problems or delays</li>
+                <li>Make adjustments to improve execution</li>
+            </ul>
+
+            <p style="margin-top: 15px;"><strong>2. Vigilance Control (Strategic Watch)</strong></p>
+            <p>Continuously monitoring the external environment for new changes, threats, or opportunities.</p>
+            <p><em>Activities:</em></p>
+            <ul>
+                <li>Track competitor moves</li>
+                <li>Monitor market trends and customer behavior</li>
+                <li>Watch technological and regulatory changes</li>
+                <li>Identify early warning signs of problems</li>
+                <li>Adapt strategy when the environment changes significantly</li>
+            </ul>
+        </div>
+
+        <div class="info-box purple">
+            <h3>💡 Important: The Process is Continuous!</h3>
+            <p>Strategic management is not a one-time activity. It is a continuous cycle where control feedback leads back to formulation. Companies must constantly analyze, adjust, and improve their strategies to stay competitive.</p>
+        </div>
+
+        <h2>🏢 MOROCCAN COMPANY EXAMPLES</h2>
+
+        <div class="company-example blue">
+            <h3>OCP Group (Office Chérifien des Phosphates)</h3>
+            
+            <h4>Formulation:</h4>
+            <ul>
+                <li><strong>External analysis:</strong> Growing global food demand, competition from other phosphate producers</li>
+                <li><strong>Internal analysis:</strong> Large phosphate reserves, mining expertise, need for modernization</li>
+                <li><strong>Objective:</strong> Become the world leader in phosphate and fertilizer industry</li>
+                <li><strong>Strategic gap:</strong> Need to increase production capacity and add value through fertilizers</li>
+                <li><strong>Strategic choice:</strong> Vertical integration - produce both phosphate and fertilizers</li>
+            </ul>
+
+            <h4>Implementation:</h4>
+            <ul>
+                <li><strong>Resources:</strong> Invested billions in new mining sites and fertilizer plants</li>
+                <li><strong>Structure:</strong> Created OCP Africa division for continental expansion</li>
+                <li><strong>Systems:</strong> Implemented advanced technology for mining and production</li>
+                <li><strong>People:</strong> Trained workforce on new technologies and safety standards</li>
+            </ul>
+
+            <h4>Control:</h4>
+            <ul>
+                <li><strong>Implementation control:</strong> Monitor production volumes, quality standards, and cost targets</li>
+                <li><strong>Vigilance control:</strong> Track global fertilizer prices, agricultural trends, and environmental regulations</li>
+            </ul>
+        </div>
+
+        <div class="company-example green">
+            <h3>Attijariwafa Bank</h3>
+            
+            <h4>Formulation:</h4>
+            <ul>
+                <li><strong>External analysis:</strong> Growth opportunities in African markets, increasing digital banking trend</li>
+                <li><strong>Internal analysis:</strong> Strong position in Morocco, financial capacity, banking expertise</li>
+                <li><strong>Objective:</strong> Become a leading pan-African banking group</li>
+                <li><strong>Strategic gap:</strong> Limited presence outside Morocco, need for digital transformation</li>
+                <li><strong>Strategic choice:</strong> Geographic expansion in Africa + digital banking development</li>
+            </ul>
+
+            <h4>Implementation:</h4>
+            <ul>
+                <li><strong>Resources:</strong> Acquired banks in several African countries (Senegal, Ivory Coast, Mali, etc.)</li>
+                <li><strong>Structure:</strong> Created regional offices to manage African operations</li>
+                <li><strong>Systems:</strong> Developed mobile banking app and digital payment solutions</li>
+                <li><strong>People:</strong> Hired local staff and trained them in banking standards and culture</li>
+            </ul>
+
+            <h4>Control:</h4>
+            <ul>
+                <li><strong>Implementation control:</strong> Track customer growth, profitability in each country, digital adoption rates</li>
+                <li><strong>Vigilance control:</strong> Monitor regulatory changes in African countries, fintech competition, currency risks</li>
+            </ul>
+        </div>
+
+        <h2>📚 VOCABULARY BOX</h2>
+        
+        <table class="vocab-table">
+            <thead>
+                <tr>
+                    <th>English</th>
+                    <th>Français</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Strategic management</td><td>Management stratégique</td></tr>
+                <tr><td>Formulation</td><td>Formulation</td></tr>
+                <tr><td>Implementation</td><td>Mise en œuvre</td></tr>
+                <tr><td>Control</td><td>Contrôle</td></tr>
+                <tr><td>Strategic diagnosis</td><td>Diagnostic stratégique</td></tr>
+                <tr><td>External analysis</td><td>Analyse externe</td></tr>
+                <tr><td>Internal analysis</td><td>Analyse interne</td></tr>
+                <tr><td>Strategic gap</td><td>Brèche / Écart stratégique</td></tr>
+                <tr><td>Strategic options</td><td>Options stratégiques</td></tr>
+                <tr><td>Objectives</td><td>Objectifs</td></tr>
+                <tr><td>Resource management</td><td>Gestion des ressources</td></tr>
+                <tr><td>Organizational design</td><td>Design organisationnel</td></tr>
+                <tr><td>Information systems</td><td>Systèmes d'information</td></tr>
+                <tr><td>Strategic watch</td><td>Veille stratégique</td></tr>
+                <tr><td>Performance monitoring</td><td>Suivi de la performance</td></tr>
+                <tr><td>To implement</td><td>Mettre en œuvre</td></tr>
+                <tr><td>To monitor</td><td>Surveiller / Contrôler</td></tr>
+                <tr><td>Competitive advantage</td><td>Avantage concurrentiel</td></tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
