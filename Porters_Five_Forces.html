@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porter's Five Forces - Industry Analysis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #2B5797;
+            --light-blue: #D5E8F0;
+            --light-green: #E8F5E9;
+            --light-orange: #FFF3E0;
+            --light-purple: #F3E5F5;
+            --yellow-box: #FFF9E6;
+            --light-red: #FFEBEE;
+            --gray-text: #555555;
+            --border-color: #CCCCCC;
+        }
+
+        body {
+            font-family: 'Source Sans 3', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 20px 30px;
+            margin: -40px -40px 30px -40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+        }
+
+        .header .icon {
+            font-size: 32px;
+        }
+
+        h2 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 22px;
+            font-weight: 700;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-intro {
+            font-size: 16px;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .definition-box {
+            background: var(--yellow-box);
+            border: 1px solid #F5E6B3;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+
+        .definition-box p {
+            font-size: 16px;
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .definition-box .french {
+            font-style: italic;
+            color: var(--gray-text);
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .forces-diagram {
+            position: relative;
+            margin: 30px 0;
+            padding: 40px;
+            background: #fafafa;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .center-box {
+            background: var(--primary-blue);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 300px;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .force-card {
+            border: 2px solid var(--border-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            min-height: 180px;
+        }
+
+        .force-card.blue {
+            background: var(--light-blue);
+            border-color: var(--primary-blue);
+        }
+
+        .force-card.green {
+            background: var(--light-green);
+            border-color: #4CAF50;
+        }
+
+        .force-card.orange {
+            background: var(--light-orange);
+            border-color: #FF9800;
+        }
+
+        .force-card.purple {
+            background: var(--light-purple);
+            border-color: #9C27B0;
+        }
+
+        .force-card.red {
+            background: var(--light-red);
+            border-color: #F44336;
+        }
+
+        .force-card .emoji {
+            font-size: 28px;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .force-card h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .force-card .french-name {
+            font-size: 14px;
+            font-style: italic;
+            color: var(--gray-text);
+            margin-bottom: 12px;
+        }
+
+        .force-card p {
+            font-size: 15px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .force-card ul {
+            margin-left: 18px;
+            margin-top: 8px;
+        }
+
+        .force-card li {
+            font-size: 14px;
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .force-card strong {
+            font-weight: 700;
+        }
+
+        .info-box {
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .info-box.purple {
+            background: var(--light-purple);
+        }
+
+        .info-box.yellow {
+            background: var(--yellow-box);
+            border-color: #F5E6B3;
+        }
+
+        .info-box h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .info-box p {
+            font-size: 15px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .info-box li {
+            font-size: 15px;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .info-box strong {
+            font-weight: 700;
+        }
+
+        .info-box em {
+            font-style: italic;
+            color: var(--gray-text);
+        }
+
+        .company-example {
+            border: 2px solid var(--border-color);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+
+        .company-example.blue {
+            background: var(--light-blue);
+            border-color: var(--primary-blue);
+        }
+
+        .company-example h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .company-example h4 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .company-example ul {
+            margin-left: 20px;
+        }
+
+        .company-example li {
+            font-size: 15px;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .intensity-box {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 13px;
+            margin-left: 10px;
+        }
+
+        .intensity-box.high {
+            background: #FFCDD2;
+            color: #C62828;
+        }
+
+        .intensity-box.medium {
+            background: #FFE082;
+            color: #F57F17;
+        }
+
+        .intensity-box.low {
+            background: #C8E6C9;
+            color: #2E7D32;
+        }
+
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .vocab-table th {
+            background: var(--primary-blue);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        .vocab-table td {
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .vocab-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Porter's Five Forces Model</h1>
+            <div class="icon">⚔️</div>
+        </div>
+
+        <h2>📖 What is Porter's Five Forces Model?</h2>
+        
+        <div class="definition-box">
+            <p><strong>Porter's Five Forces</strong> is a model created by Michael Porter in 1979 to analyze the <strong>competitive intensity</strong> and <strong>attractiveness</strong> of an industry.</p>
+            <p>This model helps companies understand the forces that affect competition in their industry. By understanding these forces, companies can:</p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>Understand how much profit they can make in the industry</li>
+                <li>Identify threats and opportunities</li>
+                <li>Develop better competitive strategies</li>
+                <li>Decide if entering or staying in an industry is a good idea</li>
+            </ul>
+            <p class="french"><em>Modèle des cinq forces de Porter : outil d'analyse de l'intensité concurrentielle et de l'attractivité d'une industrie.</em></p>
+        </div>
+
+        <h2>🎯 The Five Competitive Forces</h2>
+        
+        <p class="section-intro">According to Porter, five forces shape competition in every industry. The stronger these forces are, the harder it is to make profit.</p>
+
+        <div class="forces-diagram">
+            <div class="center-box">
+                <span style="font-size: 24px;">🏢</span><br>
+                RIVALRY AMONG EXISTING COMPETITORS<br>
+                <span style="font-size: 13px; font-weight: 400;">(Center of Competition)</span>
+            </div>
+        </div>
+
+        <div class="force-card blue">
+            <h3><span class="emoji">🤝</span> Force 1: Threat of New Entrants</h3>
+            <p class="french-name">Menace des nouveaux entrants</p>
+            <p><strong>Definition:</strong> The risk that new companies will enter the industry and increase competition.</p>
+            <p><strong>Question to ask:</strong> How easy is it for new competitors to enter our industry?</p>
+            <p><strong>When is this threat HIGH?</strong></p>
+            <ul>
+                <li>Low entry barriers (easy to start a business)</li>
+                <li>Small investment needed to enter</li>
+                <li>No special technology or skills required</li>
+                <li>Easy access to distribution channels</li>
+                <li>Weak brand loyalty from customers</li>
+                <li>High potential profits attract new companies</li>
+            </ul>
+            <p><strong>When is this threat LOW?</strong></p>
+            <ul>
+                <li>High entry barriers (hard to start)</li>
+                <li>Large investment needed (capital intensive)</li>
+                <li>Strong regulations and licenses required</li>
+                <li>Existing companies have strong brands</li>
+                <li>Economies of scale benefit existing companies</li>
+            </ul>
+        </div>
+
+        <div class="force-card green">
+            <h3><span class="emoji">💪</span> Force 2: Bargaining Power of Suppliers</h3>
+            <p class="french-name">Pouvoir de négociation des fournisseurs</p>
+            <p><strong>Definition:</strong> The ability of suppliers to increase prices or reduce quality of materials and services.</p>
+            <p><strong>Question to ask:</strong> How much control do our suppliers have over us?</p>
+            <p><strong>When is supplier power HIGH?</strong></p>
+            <ul>
+                <li>Few suppliers available (limited choice)</li>
+                <li>Suppliers offer unique or differentiated products</li>
+                <li>High cost to switch to another supplier</li>
+                <li>Suppliers can integrate forward (become competitors)</li>
+                <li>Industry is not important to the supplier</li>
+                <li>No substitute inputs available</li>
+            </ul>
+            <p><strong>When is supplier power LOW?</strong></p>
+            <ul>
+                <li>Many suppliers available</li>
+                <li>Standardized products (easy to replace)</li>
+                <li>Low switching costs</li>
+                <li>Company can make the input itself (backward integration)</li>
+            </ul>
+        </div>
+
+        <div class="force-card orange">
+            <h3><span class="emoji">👥</span> Force 3: Bargaining Power of Buyers</h3>
+            <p class="french-name">Pouvoir de négociation des clients</p>
+            <p><strong>Definition:</strong> The ability of customers to pressure companies to lower prices or improve quality.</p>
+            <p><strong>Question to ask:</strong> How much control do our customers have over us?</p>
+            <p><strong>When is buyer power HIGH?</strong></p>
+            <ul>
+                <li>Few buyers purchase large volumes</li>
+                <li>Product is standardized (many alternatives)</li>
+                <li>Low switching costs for customers</li>
+                <li>Buyers are price-sensitive</li>
+                <li>Buyers have full information about prices and costs</li>
+                <li>Buyers can integrate backward (make the product themselves)</li>
+                <li>Product is not very important to buyer's quality</li>
+            </ul>
+            <p><strong>When is buyer power LOW?</strong></p>
+            <ul>
+                <li>Many small buyers</li>
+                <li>Unique or differentiated product</li>
+                <li>High switching costs</li>
+                <li>Product is critical to buyer's business</li>
+            </ul>
+        </div>
+
+        <div class="force-card purple">
+            <h3><span class="emoji">🔄</span> Force 4: Threat of Substitute Products</h3>
+            <p class="french-name">Menace des produits de substitution</p>
+            <p><strong>Definition:</strong> The risk that customers will switch to different products or services that meet the same need.</p>
+            <p><strong>Question to ask:</strong> Can customers use something else instead of our product?</p>
+            <p><strong>When is this threat HIGH?</strong></p>
+            <ul>
+                <li>Many substitute products available</li>
+                <li>Substitutes offer better price-performance</li>
+                <li>Low switching costs to substitutes</li>
+                <li>Substitutes from industries with higher profits</li>
+                <li>Customer willing to try alternatives</li>
+            </ul>
+            <p><strong>Examples of substitutes:</strong></p>
+            <ul>
+                <li>Train vs. airplane (both for travel)</li>
+                <li>Coffee vs. tea (both for hot drinks)</li>
+                <li>Cinema vs. streaming services (both for entertainment)</li>
+                <li>Butter vs. margarine (both for spreading)</li>
+            </ul>
+            <p><strong>When is this threat LOW?</strong></p>
+            <ul>
+                <li>Few or no substitutes available</li>
+                <li>High switching costs</li>
+                <li>Company's product has unique features</li>
+                <li>Strong brand loyalty</li>
+            </ul>
+        </div>
+
+        <div class="force-card red">
+            <h3><span class="emoji">⚔️</span> Force 5: Rivalry Among Existing Competitors</h3>
+            <p class="french-name">Rivalité entre les concurrents existants</p>
+            <p><strong>Definition:</strong> The intensity of competition between companies already operating in the industry.</p>
+            <p><strong>Question to ask:</strong> How intense is the competition between current companies?</p>
+            <p><strong>When is rivalry HIGH (intense competition)?</strong></p>
+            <ul>
+                <li>Many competitors of similar size</li>
+                <li>Slow industry growth (fighting for market share)</li>
+                <li>Products are similar (hard to differentiate)</li>
+                <li>High fixed costs (pressure to sell more)</li>
+                <li>Low switching costs for customers</li>
+                <li>High exit barriers (expensive to leave industry)</li>
+                <li>Competitors have different strategies</li>
+                <li>High strategic stakes (importance of success)</li>
+            </ul>
+            <p><strong>When is rivalry LOW (weak competition)?</strong></p>
+            <ul>
+                <li>Few competitors</li>
+                <li>Fast industry growth (enough for everyone)</li>
+                <li>Highly differentiated products</li>
+                <li>Low fixed costs</li>
+                <li>High switching costs</li>
+            </ul>
+        </div>
+
+        <h2>📊 How to Use Porter's Five Forces</h2>
+
+        <div class="info-box yellow">
+            <h3>📋 Step-by-Step Analysis:</h3>
+            <p><strong>Step 1:</strong> Define your industry clearly (What business are you really in?)</p>
+            <p><strong>Step 2:</strong> Analyze each of the five forces one by one</p>
+            <p><strong>Step 3:</strong> Determine if each force is HIGH, MEDIUM, or LOW</p>
+            <p><strong>Step 4:</strong> Identify the strongest forces (the biggest threats)</p>
+            <p><strong>Step 5:</strong> Develop strategies to deal with these forces</p>
+            <p style="margin-top: 15px;"><strong>💡 Remember:</strong> If forces are strong = harder to make profit. If forces are weak = easier to make profit.</p>
+        </div>
+
+        <div class="info-box purple">
+            <h3>🎯 Strategic Implications</h3>
+            <p><strong>If forces are STRONG (unfavorable):</strong></p>
+            <ul>
+                <li>Industry is less attractive (lower profits)</li>
+                <li>Need strong competitive advantages to succeed</li>
+                <li>Consider diversifying to other industries</li>
+                <li>Focus on differentiation and building barriers</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>If forces are WEAK (favorable):</strong></p>
+            <ul>
+                <li>Industry is more attractive (higher profits possible)</li>
+                <li>Good opportunity for investment and growth</li>
+                <li>Focus on capturing market share</li>
+                <li>Build barriers to keep forces weak</li>
+            </ul>
+        </div>
+
+        <h2>🏢 MOROCCAN EXAMPLE: Royal Air Maroc</h2>
+
+        <div class="company-example blue">
+            <h3>Porter's Five Forces Analysis: Airline Industry in Morocco</h3>
+
+            <h4>⚔️ Force 1: Threat of New Entrants <span class="intensity-box medium">MEDIUM</span></h4>
+            <ul>
+                <li><strong>Barriers that PROTECT Royal Air Maroc:</strong>
+                    <ul style="margin-top: 5px;">
+                        <li>High capital requirements (expensive to buy planes)</li>
+                        <li>Strict safety regulations and licensing</li>
+                        <li>Need for airport slots and agreements</li>
+                        <li>Strong brand recognition in Morocco</li>
+                    </ul>
+                </li>
+                <li><strong>Threats:</strong>
+                    <ul style="margin-top: 5px;">
+                        <li>Low-cost airlines (Ryanair, Air Arabia) entering routes</li>
+                        <li>Liberalization of African airspace</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h4>💪 Force 2: Supplier Power <span class="intensity-box high">HIGH</span></h4>
+            <ul>
+                <li><strong>Aircraft manufacturers:</strong> Only Boeing and Airbus (limited choice)</li>
+                <li><strong>Fuel suppliers:</strong> Oil prices fluctuate, high impact on costs</li>
+                <li><strong>Airports:</strong> Limited alternatives for landing slots</li>
+                <li><strong>Impact:</strong> Suppliers have strong negotiating power</li>
+            </ul>
+
+            <h4>👥 Force 3: Buyer Power <span class="intensity-box high">HIGH</span></h4>
+            <ul>
+                <li><strong>Individual passengers:</strong>
+                    <ul style="margin-top: 5px;">
+                        <li>Can easily compare prices online</li>
+                        <li>Low switching costs (can choose any airline)</li>
+                        <li>Price-sensitive, especially for leisure travel</li>
+                    </ul>
+                </li>
+                <li><strong>Corporate clients:</strong>
+                    <ul style="margin-top: 5px;">
+                        <li>Negotiate volume discounts</li>
+                        <li>Can switch to competitors</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h4>🔄 Force 4: Threat of Substitutes <span class="intensity-box medium">MEDIUM</span></h4>
+            <ul>
+                <li><strong>For short distances:</strong>
+                    <ul style="margin-top: 5px;">
+                        <li>Trains (Al Boraq high-speed train Casablanca-Tangier)</li>
+                        <li>Buses (CTM, Supratours)</li>
+                        <li>Cars (for domestic travel)</li>
+                    </ul>
+                </li>
+                <li><strong>For international:</strong>
+                    <ul style="margin-top: 5px;">
+                        <li>Video conferencing (replacing business travel)</li>
+                        <li>Ferries to Spain</li>
+                    </ul>
+                </li>
+                <li><strong>Lower threat for long-distance international flights</strong></li>
+            </ul>
+
+            <h4>⚔️ Force 5: Competitive Rivalry <span class="intensity-box high">HIGH</span></h4>
+            <ul>
+                <li><strong>Direct competitors:</strong>
+                    <ul style="margin-top: 5px;">
+                        <li>Air Arabia Maroc (low-cost carrier)</li>
+                        <li>European airlines (Air France, Iberia, Turkish Airlines)</li>
+                        <li>Middle Eastern carriers (Emirates, Qatar Airways) for connecting flights</li>
+                    </ul>
+                </li>
+                <li><strong>Competition factors:</strong>
+                    <ul style="margin-top: 5px;">
+                        <li>Price wars, especially on European routes</li>
+                        <li>Service quality competition</li>
+                        <li>Route network competition</li>
+                        <li>Frequency of flights</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h4>📊 Conclusion for Royal Air Maroc:</h4>
+            <p style="margin-top: 10px;"><strong>Overall Industry Attractiveness:</strong> <span class="intensity-box medium">MODERATE</span></p>
+            <p><em>The airline industry faces strong competitive forces. RAM needs to differentiate through service quality, leverage its position as national carrier, expand African routes, and build customer loyalty programs.</em></p>
+        </div>
+
+        <h2>📚 VOCABULARY BOX</h2>
+        
+        <table class="vocab-table">
+            <thead>
+                <tr>
+                    <th>English</th>
+                    <th>Français</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Five forces</td><td>Cinq forces</td></tr>
+                <tr><td>Competitive intensity</td><td>Intensité concurrentielle</td></tr>
+                <tr><td>Industry attractiveness</td><td>Attractivité de l'industrie</td></tr>
+                <tr><td>Threat of new entrants</td><td>Menace des nouveaux entrants</td></tr>
+                <tr><td>Bargaining power of suppliers</td><td>Pouvoir de négociation des fournisseurs</td></tr>
+                <tr><td>Bargaining power of buyers</td><td>Pouvoir de négociation des clients</td></tr>
+                <tr><td>Threat of substitutes</td><td>Menace des produits de substitution</td></tr>
+                <tr><td>Rivalry among competitors</td><td>Rivalité entre concurrents</td></tr>
+                <tr><td>Entry barriers</td><td>Barrières à l'entrée</td></tr>
+                <tr><td>Exit barriers</td><td>Barrières à la sortie</td></tr>
+                <tr><td>Switching costs</td><td>Coûts de transfert</td></tr>
+                <tr><td>Differentiation</td><td>Différenciation</td></tr>
+                <tr><td>Market share</td><td>Part de marché</td></tr>
+                <tr><td>Profit margin</td><td>Marge bénéficiaire</td></tr>
+                <tr><td>Fixed costs</td><td>Coûts fixes</td></tr>
+                <tr><td>Economies of scale</td><td>Économies d'échelle</td></tr>
+                <tr><td>Brand loyalty</td><td>Fidélité à la marque</td></tr>
+                <tr><td>Distribution channels</td><td>Canaux de distribution</td></tr>
+                <tr><td>Forward integration</td><td>Intégration en aval</td></tr>
+                <tr><td>Backward integration</td><td>Intégration en amont</td></tr>
+                <tr><td>Substitute products</td><td>Produits de substitution</td></tr>
+                <tr><td>Price-sensitive</td><td>Sensible au prix</td></tr>
+                <tr><td>Capital intensive</td><td>Intensif en capital</td></tr>
+                <tr><td>Standardized products</td><td>Produits standardisés</td></tr>
+                <tr><td>Competitive advantage</td><td>Avantage concurrentiel</td></tr>
+                <tr><td>Industry growth</td><td>Croissance de l'industrie</td></tr>
+                <tr><td>Strategic stakes</td><td>Enjeux stratégiques</td></tr>
+                <tr><td>Supplier</td><td>Fournisseur</td></tr>
+                <tr><td>Buyer/Customer</td><td>Client/Acheteur</td></tr>
+                <tr><td>Competitor</td><td>Concurrent</td></tr>
+                <tr><td>To analyze</td><td>Analyser</td></tr>
+                <tr><td>To compete</td><td>Concourir / Rivaliser</td></tr>
+                <tr><td>To differentiate</td><td>Différencier</td></tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

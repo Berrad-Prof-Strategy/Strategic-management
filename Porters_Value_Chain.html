@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porter's Value Chain - Internal Analysis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #2B5797;
+            --light-blue: #D5E8F0;
+            --light-green: #E8F5E9;
+            --light-orange: #FFF3E0;
+            --light-purple: #F3E5F5;
+            --yellow-box: #FFF9E6;
+            --light-red: #FFEBEE;
+            --gray-text: #555555;
+            --border-color: #CCCCCC;
+        }
+
+        body {
+            font-family: 'Source Sans 3', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 20px 30px;
+            margin: -40px -40px 30px -40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+        }
+
+        .header .icon {
+            font-size: 32px;
+        }
+
+        h2 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 22px;
+            font-weight: 700;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-intro {
+            font-size: 16px;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .definition-box {
+            background: var(--yellow-box);
+            border: 1px solid #F5E6B3;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+
+        .definition-box p {
+            font-size: 16px;
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .definition-box .french {
+            font-style: italic;
+            color: var(--gray-text);
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .value-chain-diagram {
+            margin: 30px 0;
+            border: 3px solid var(--primary-blue);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .support-activities {
+            background: var(--light-purple);
+            padding: 15px;
+            border-bottom: 2px solid var(--primary-blue);
+        }
+
+        .support-activity {
+            background: white;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-left: 4px solid #9C27B0;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .support-activity:last-child {
+            margin-bottom: 0;
+        }
+
+        .primary-activities {
+            display: flex;
+            background: var(--light-blue);
+        }
+
+        .primary-activity {
+            flex: 1;
+            padding: 20px 10px;
+            text-align: center;
+            border-right: 2px solid white;
+            font-size: 14px;
+            font-weight: 600;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .primary-activity:last-child {
+            border-right: none;
+        }
+
+        .margin-box {
+            background: var(--light-green);
+            padding: 20px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--primary-blue);
+            border-top: 2px solid var(--primary-blue);
+        }
+
+        .activity-card {
+            border: 2px solid var(--border-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .activity-card.primary {
+            background: var(--light-blue);
+            border-color: var(--primary-blue);
+        }
+
+        .activity-card.support {
+            background: var(--light-purple);
+            border-color: #9C27B0;
+        }
+
+        .activity-card .emoji {
+            font-size: 28px;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .activity-card h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .activity-card .french-name {
+            font-size: 14px;
+            font-style: italic;
+            color: var(--gray-text);
+            margin-bottom: 12px;
+        }
+
+        .activity-card p {
+            font-size: 15px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .activity-card ul {
+            margin-left: 18px;
+            margin-top: 8px;
+        }
+
+        .activity-card li {
+            font-size: 14px;
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .question-box {
+            background: var(--yellow-box);
+            border: 2px solid #F5E6B3;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .question-box h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .question-box .question-number {
+            background: var(--primary-blue);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 12px;
+            font-size: 16px;
+        }
+
+        .question-box .question-text {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .question-box p {
+            font-size: 15px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .question-box ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        .question-box li {
+            font-size: 14px;
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .info-box {
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .info-box.purple {
+            background: var(--light-purple);
+        }
+
+        .info-box.green {
+            background: var(--light-green);
+        }
+
+        .info-box.orange {
+            background: var(--light-orange);
+        }
+
+        .info-box h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .info-box h4 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            font-size: 15px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .info-box li {
+            font-size: 15px;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .info-box strong {
+            font-weight: 700;
+        }
+
+        .info-box em {
+            font-style: italic;
+            color: var(--gray-text);
+        }
+
+        .company-example {
+            border: 2px solid var(--border-color);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+
+        .company-example.blue {
+            background: var(--light-blue);
+            border-color: var(--primary-blue);
+        }
+
+        .company-example h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .company-example h4 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .company-example p {
+            font-size: 15px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .company-example ul {
+            margin-left: 20px;
+        }
+
+        .company-example li {
+            font-size: 15px;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .vocab-table th {
+            background: var(--primary-blue);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        .vocab-table td {
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .vocab-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Porter's Value Chain</h1>
+            <div class="icon">⛓️</div>
+        </div>
+
+        <h2>📖 What is the Value Chain?</h2>
+        
+        <div class="definition-box">
+            <p><strong>The Value Chain</strong> is a model created by Michael Porter that breaks down a company into its key activities to understand where value is created.</p>
+            <p><strong>Key idea:</strong> A company creates value by performing a series of activities that transform inputs (materials, labor) into outputs (products or services) that customers are willing to pay for.</p>
+            <p><strong>Purpose:</strong> By analyzing each activity, companies can:</p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>Identify sources of competitive advantage</li>
+                <li>Find ways to add more value for customers</li>
+                <li>Discover opportunities to reduce costs</li>
+                <li>Understand which activities are most important</li>
+            </ul>
+            <p class="french"><em>Chaîne de valeur : modèle qui décompose l'entreprise en activités clés pour comprendre où la valeur est créée.</em></p>
+        </div>
+
+        <h2>🔗 Structure of the Value Chain</h2>
+        
+        <p class="section-intro">The value chain consists of two types of activities:</p>
+
+        <div class="value-chain-diagram">
+            <div class="support-activities">
+                <h3 style="color: var(--primary-blue); margin-bottom: 12px; font-size: 16px; font-weight: 700;">SUPPORT ACTIVITIES (Secondary Activities)</h3>
+                <div class="support-activity">🏢 Firm Infrastructure (Management, Finance, Planning)</div>
+                <div class="support-activity">👥 Human Resource Management (Recruiting, Training, Compensation)</div>
+                <div class="support-activity">💻 Technology Development (R&D, Process Improvement, Innovation)</div>
+                <div class="support-activity">🛒 Procurement (Purchasing, Supplier Management)</div>
+            </div>
+            <div class="primary-activities">
+                <div class="primary-activity">📦<br>INBOUND LOGISTICS</div>
+                <div class="primary-activity">⚙️<br>OPERATIONS</div>
+                <div class="primary-activity">🚚<br>OUTBOUND LOGISTICS</div>
+                <div class="primary-activity">📢<br>MARKETING & SALES</div>
+                <div class="primary-activity">🔧<br>SERVICE</div>
+            </div>
+            <div class="margin-box">💰 MARGIN (PROFIT) 💰</div>
+        </div>
+
+        <h2>1️⃣ Primary Activities</h2>
+        <p class="section-intro"><em>Activities directly involved in creating and delivering the product/service</em></p>
+
+        <div class="activity-card primary">
+            <h3><span class="emoji">📦</span> Inbound Logistics</h3>
+            <p class="french-name">Logistique entrante</p>
+            <p><strong>Definition:</strong> Activities related to receiving, storing, and distributing inputs to the production process.</p>
+            <p><strong>Examples:</strong></p>
+            <ul>
+                <li>Receiving raw materials from suppliers</li>
+                <li>Warehouse management and inventory control</li>
+                <li>Material handling and storage</li>
+                <li>Quality checking of incoming materials</li>
+            </ul>
+        </div>
+
+        <div class="activity-card primary">
+            <h3><span class="emoji">⚙️</span> Operations</h3>
+            <p class="french-name">Production / Opérations</p>
+            <p><strong>Definition:</strong> Activities that transform inputs into the final product or service.</p>
+            <p><strong>Examples:</strong></p>
+            <ul>
+                <li>Manufacturing and assembly</li>
+                <li>Packaging</li>
+                <li>Equipment maintenance</li>
+                <li>Testing and quality control</li>
+                <li>For services: delivering the service to customers</li>
+            </ul>
+        </div>
+
+        <div class="activity-card primary">
+            <h3><span class="emoji">🚚</span> Outbound Logistics</h3>
+            <p class="french-name">Logistique sortante</p>
+            <p><strong>Definition:</strong> Activities related to collecting, storing, and distributing products to customers.</p>
+            <p><strong>Examples:</strong></p>
+            <ul>
+                <li>Finished goods warehousing</li>
+                <li>Order processing</li>
+                <li>Transportation and delivery</li>
+                <li>Distribution network management</li>
+            </ul>
+        </div>
+
+        <div class="activity-card primary">
+            <h3><span class="emoji">📢</span> Marketing & Sales</h3>
+            <p class="french-name">Marketing et ventes</p>
+            <p><strong>Definition:</strong> Activities to make customers aware of products and convince them to buy.</p>
+            <p><strong>Examples:</strong></p>
+            <ul>
+                <li>Advertising and promotion</li>
+                <li>Sales force management</li>
+                <li>Pricing strategy</li>
+                <li>Channel selection (retail, online, wholesale)</li>
+                <li>Brand management</li>
+            </ul>
+        </div>
+
+        <div class="activity-card primary">
+            <h3><span class="emoji">🔧</span> Service</h3>
+            <p class="french-name">Service après-vente</p>
+            <p><strong>Definition:</strong> Activities to maintain and enhance product value after the sale.</p>
+            <p><strong>Examples:</strong></p>
+            <ul>
+                <li>Installation and setup</li>
+                <li>Customer support and help desk</li>
+                <li>Repair and maintenance</li>
+                <li>Training for customers</li>
+                <li>Warranty and replacement parts</li>
+            </ul>
+        </div>
+
+        <h2>2️⃣ Support Activities</h2>
+        <p class="section-intro"><em>Activities that support the primary activities and help the entire value chain function</em></p>
+
+        <div class="activity-card support">
+            <h3><span class="emoji">🏢</span> Firm Infrastructure</h3>
+            <p class="french-name">Infrastructure de l'entreprise</p>
+            <p><strong>Definition:</strong> Company-wide systems and activities that support the entire value chain.</p>
+            <p><strong>Examples:</strong></p>
+            <ul>
+                <li>General management and strategic planning</li>
+                <li>Accounting and finance</li>
+                <li>Legal services</li>
+                <li>Quality management systems</li>
+                <li>Information systems</li>
+            </ul>
+        </div>
+
+        <div class="activity-card support">
+            <h3><span class="emoji">👥</span> Human Resource Management</h3>
+            <p class="french-name">Gestion des ressources humaines</p>
+            <p><strong>Definition:</strong> Activities related to managing people in the organization.</p>
+            <p><strong>Examples:</strong></p>
+            <ul>
+                <li>Recruiting and hiring</li>
+                <li>Training and development programs</li>
+                <li>Compensation and benefits</li>
+                <li>Performance evaluation</li>
+                <li>Employee relations</li>
+            </ul>
+        </div>
+
+        <div class="activity-card support">
+            <h3><span class="emoji">💻</span> Technology Development</h3>
+            <p class="french-name">Développement technologique</p>
+            <p><strong>Definition:</strong> Activities related to improving products, processes, and knowledge.</p>
+            <p><strong>Examples:</strong></p>
+            <ul>
+                <li>Research and development (R&D)</li>
+                <li>Product design and engineering</li>
+                <li>Process automation</li>
+                <li>IT systems development</li>
+                <li>Innovation management</li>
+            </ul>
+        </div>
+
+        <div class="activity-card support">
+            <h3><span class="emoji">🛒</span> Procurement</h3>
+            <p class="french-name">Approvisionnement / Achats</p>
+            <p><strong>Definition:</strong> Activities related to purchasing inputs needed by the company.</p>
+            <p><strong>Examples:</strong></p>
+            <ul>
+                <li>Supplier selection and negotiation</li>
+                <li>Purchasing raw materials, equipment, supplies</li>
+                <li>Contract management</li>
+                <li>Supplier relationship management</li>
+            </ul>
+        </div>
+
+        <h2>🔍 How to Analyze the Value Chain</h2>
+
+        <div class="info-box purple">
+            <h3>💡 Important Principle:</h3>
+            <p>Value chain analysis must go <strong>beyond simple description</strong> of activities. You must analyze the potential contribution of each activity to creating or strengthening competitive advantages, mainly through:</p>
+            <ul>
+                <li><strong>Value creation:</strong> How does this activity add value that customers appreciate?</li>
+                <li><strong>Cost reduction:</strong> How can this activity help reduce costs?</li>
+            </ul>
+        </div>
+
+        <h2>📋 The Five Key Questions for Each Activity</h2>
+        
+        <p class="section-intro">For each activity in the value chain, you should ask and answer these five questions deeply and rigorously:</p>
+
+        <div class="question-box">
+            <h3><span class="question-number">1</span> What does this activity consist of?</h3>
+            <p class="question-text">QUESTION: What does this activity consist of in the case of the company?</p>
+            <p class="french-name" style="font-style: italic; color: var(--gray-text); margin-bottom: 12px;">En quoi consiste cette activité dans le cas de l'entreprise?</p>
+            <p><strong>What to analyze:</strong></p>
+            <ul>
+                <li>Describe precisely what the company does in this activity</li>
+                <li>What are the specific tasks and processes?</li>
+                <li>What resources (people, equipment, technology) are used?</li>
+                <li>How is this activity organized?</li>
+            </ul>
+            <p><strong>Example (Inbound Logistics at a clothing manufacturer):</strong></p>
+            <p><em>"We receive fabric from 15 suppliers in Asia and Europe. Materials are inspected upon arrival, then stored in our 5,000m² warehouse. We use a computerized inventory system to track all materials. Average storage time is 2 weeks before production."</em></p>
+        </div>
+
+        <div class="question-box">
+            <h3><span class="question-number">2</span> Horizontal Links</h3>
+            <p class="question-text">QUESTION: What relationships exist between this activity and other links in the company's value chain?</p>
+            <p class="french-name" style="font-style: italic; color: var(--gray-text); margin-bottom: 12px;">Quelles relations y a-t-il entre cette activité et les autres maillons de la chaîne de valeur?</p>
+            <p><strong>What to analyze:</strong></p>
+            <ul>
+                <li>How does this activity connect to other primary activities?</li>
+                <li>How does it connect to support activities?</li>
+                <li>What information or materials flow between activities?</li>
+                <li>How do changes in one activity affect others?</li>
+            </ul>
+            <p><strong>Example (Operations linked to other activities):</strong></p>
+            <ul>
+                <li><em>Link to Inbound Logistics: Production schedule determines when materials are needed</em></li>
+                <li><em>Link to Marketing: Customer orders influence production priorities</em></li>
+                <li><em>Link to HR Management: Need for trained workers affects production quality</em></li>
+                <li><em>Link to Technology: New machines improve production efficiency</em></li>
+            </ul>
+        </div>
+
+        <div class="question-box">
+            <h3><span class="question-number">3</span> Vertical Links</h3>
+            <p class="question-text">QUESTION: What relationships exist between this activity and those performed by other companies?</p>
+            <p class="french-name" style="font-style: italic; color: var(--gray-text); margin-bottom: 12px;">Quelles relations y a-t-il entre cette activité et celles réalisées par d'autres entreprises?</p>
+            <p><strong>What to analyze:</strong></p>
+            <ul>
+                <li>Links with <strong>suppliers</strong> (upstream in the value system)</li>
+                <li>Links with <strong>distributors and retailers</strong> (downstream in the value system)</li>
+                <li>How do supplier activities affect our activities?</li>
+                <li>How do our activities affect customer/distributor activities?</li>
+                <li>Opportunities for collaboration or coordination</li>
+            </ul>
+            <p><strong>Example (Outbound Logistics with distributors):</strong></p>
+            <ul>
+                <li><em>We coordinate delivery schedules with retail partners to ensure shelves are stocked</em></li>
+                <li><em>Retailers share sales data so we can adjust production volumes</em></li>
+                <li><em>We provide packaging that makes products easy for retailers to display</em></li>
+            </ul>
+        </div>
+
+        <div class="question-box">
+            <h3><span class="question-number">4</span> Impact on Costs</h3>
+            <p class="question-text">QUESTION: What impact do this activity and its links have on the company's costs?</p>
+            <p class="french-name" style="font-style: italic; color: var(--gray-text); margin-bottom: 12px;">Quel impact ont cette activité et ses liens sur les coûts de l'entreprise?</p>
+            <p><strong>What to analyze:</strong></p>
+            <ul>
+                <li>What are the direct costs of this activity?</li>
+                <li>What are the indirect costs (overhead)?</li>
+                <li>How do links with other activities affect total costs?</li>
+                <li>Where are the main cost drivers (factors that increase costs)?</li>
+                <li>Opportunities to reduce costs</li>
+            </ul>
+            <p><strong>Example (Procurement activity):</strong></p>
+            <ul>
+                <li><em>Direct costs: Purchasing department salaries = $200,000/year</em></li>
+                <li><em>Impact on other costs: Better supplier negotiations reduced material costs by 8%</em></li>
+                <li><em>Link impact: Working with fewer suppliers reduced transaction costs by 15%</em></li>
+                <li><em>Cost driver: Number of suppliers and complexity of contracts</em></li>
+            </ul>
+        </div>
+
+        <div class="question-box">
+            <h3><span class="question-number">5</span> Value Creation</h3>
+            <p class="question-text">QUESTION: How can this activity and its links bring value?</p>
+            <p class="french-name" style="font-style: italic; color: var(--gray-text); margin-bottom: 12px;">Comment cette activité et ses liens peuvent-ils apporter de la valeur?</p>
+            <p><strong>What to analyze:</strong></p>
+            <ul>
+                <li>How does this activity make the product/service more valuable to customers?</li>
+                <li>What features, benefits, or experiences does it create?</li>
+                <li>How do links enhance value creation?</li>
+                <li>Can this activity create differentiation or competitive advantage?</li>
+                <li>Opportunities to increase customer willingness to pay</li>
+            </ul>
+            <p><strong>Example (Service activity at a car manufacturer):</strong></p>
+            <ul>
+                <li><em>24/7 roadside assistance increases customer peace of mind → higher perceived value</em></li>
+                <li><em>Free maintenance for 3 years differentiates us from competitors</em></li>
+                <li><em>Link with Technology: Mobile app for service booking makes it convenient</em></li>
+                <li><em>Link with Marketing: Excellent service creates word-of-mouth recommendations</em></li>
+                <li><em>Value: Customers willing to pay 5% premium for better service experience</em></li>
+            </ul>
+        </div>
+
+        <h2>🏢 MOROCCAN EXAMPLE: Marjane (Retail Chain)</h2>
+
+        <div class="company-example blue">
+            <h3>Value Chain Analysis: Marjane Supermarket</h3>
+            <p><em>Let's analyze the "Procurement" support activity using the five questions:</em></p>
+
+            <h4>❶ What does this activity consist of?</h4>
+            <ul>
+                <li>Procurement team negotiates with thousands of suppliers (local and international)</li>
+                <li>Purchases food products, household goods, electronics, clothing</li>
+                <li>Develops partnerships with local Moroccan producers for fresh products</li>
+                <li>Uses centralized purchasing system for all stores nationwide</li>
+                <li>Manages supplier contracts and payment terms</li>
+            </ul>
+
+            <h4>❷ Horizontal Links (with other activities):</h4>
+            <ul>
+                <li><strong>Link with Inbound Logistics:</strong> Purchasing decisions affect delivery schedules and warehouse space needed</li>
+                <li><strong>Link with Operations:</strong> Product selection affects shelf space planning and store layout</li>
+                <li><strong>Link with Marketing:</strong> Procurement negotiates promotional pricing for sales campaigns</li>
+                <li><strong>Link with Technology:</strong> IT systems track inventory levels and automatically trigger reorders</li>
+                <li><strong>Link with Finance:</strong> Payment terms with suppliers affect cash flow</li>
+            </ul>
+
+            <h4>❸ Vertical Links (with other companies):</h4>
+            <ul>
+                <li><strong>Upstream (suppliers):</strong>
+                    <ul style="margin-top: 5px;">
+                        <li>Works closely with dairy farms in Fes region for fresh milk supply</li>
+                        <li>Coordinates with vegetable growers in Souss-Massa for seasonal produce</li>
+                        <li>Partners with international brands (Nestlé, Danone) for exclusive product launches</li>
+                    </ul>
+                </li>
+                <li><strong>Impact on suppliers:</strong> Large order volumes help suppliers achieve economies of scale</li>
+                <li><strong>Benefit from suppliers:</strong> Suppliers invest in better packaging and quality for Marjane's standards</li>
+            </ul>
+
+            <h4>❹ Impact on Costs:</h4>
+            <ul>
+                <li><strong>Direct costs:</strong> Procurement staff salaries, travel for supplier visits, contract management systems</li>
+                <li><strong>Cost reduction impact:</strong> Bulk purchasing power reduces cost per unit by 15-25%</li>
+                <li><strong>Negotiated payment terms:</strong> 60-90 day payment periods improve Marjane's cash flow</li>
+                <li><strong>Centralized purchasing:</strong> Saves costs compared to each store negotiating separately</li>
+                <li><strong>Local sourcing:</strong> Reduces transportation costs and import duties</li>
+            </ul>
+
+            <h4>❺ Value Creation:</h4>
+            <ul>
+                <li><strong>Product variety:</strong> Wide selection from many suppliers = more choice for customers</li>
+                <li><strong>Fresh local products:</strong> Partnerships with Moroccan farmers = fresher produce = happier customers</li>
+                <li><strong>Competitive pricing:</strong> Strong negotiation power = lower prices passed to customers</li>
+                <li><strong>Exclusive products:</strong> Some brands available only at Marjane = differentiation</li>
+                <li><strong>Quality assurance:</strong> Strict supplier standards = reliable product quality</li>
+                <li><strong>Result:</strong> Customers perceive Marjane as offering good value for money</li>
+            </ul>
+        </div>
+
+        <div class="info-box green">
+            <h3>🎯 Key Takeaways from Value Chain Analysis:</h3>
+            <ul>
+                <li><strong>Not just description:</strong> Analysis must go deep to find competitive advantage opportunities</li>
+                <li><strong>Activities are interconnected:</strong> Understanding links is crucial for optimization</li>
+                <li><strong>Two paths to advantage:</strong> Add value (customers pay more) OR reduce costs (higher margins)</li>
+                <li><strong>External links matter:</strong> Coordination with suppliers and distributors can create value</li>
+                <li><strong>Question everything:</strong> Each activity should be examined for improvement potential</li>
+            </ul>
+        </div>
+
+        <h2>📚 VOCABULARY BOX</h2>
+        
+        <table class="vocab-table">
+            <thead>
+                <tr>
+                    <th>English</th>
+                    <th>Français</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Value chain</td><td>Chaîne de valeur</td></tr>
+                <tr><td>Primary activities</td><td>Activités primaires</td></tr>
+                <tr><td>Support activities</td><td>Activités de soutien / secondaires</td></tr>
+                <tr><td>Inbound logistics</td><td>Logistique entrante</td></tr>
+                <tr><td>Operations</td><td>Production / Opérations</td></tr>
+                <tr><td>Outbound logistics</td><td>Logistique sortante</td></tr>
+                <tr><td>Marketing & sales</td><td>Marketing et ventes</td></tr>
+                <tr><td>Service</td><td>Service après-vente</td></tr>
+                <tr><td>Firm infrastructure</td><td>Infrastructure de l'entreprise</td></tr>
+                <tr><td>Human resource management</td><td>Gestion des ressources humaines</td></tr>
+                <tr><td>Technology development</td><td>Développement technologique</td></tr>
+                <tr><td>Procurement</td><td>Approvisionnement / Achats</td></tr>
+                <tr><td>Margin</td><td>Marge</td></tr>
+                <tr><td>Value creation</td><td>Création de valeur</td></tr>
+                <tr><td>Cost reduction</td><td>Réduction des coûts</td></tr>
+                <tr><td>Horizontal links</td><td>Liens horizontaux</td></tr>
+                <tr><td>Vertical links</td><td>Liens verticaux</td></tr>
+                <tr><td>Competitive advantage</td><td>Avantage concurrentiel</td></tr>
+                <tr><td>Inputs</td><td>Intrants / Ressources d'entrée</td></tr>
+                <tr><td>Outputs</td><td>Extrants / Produits de sortie</td></tr>
+                <tr><td>Warehouse</td><td>Entrepôt</td></tr>
+                <tr><td>Inventory</td><td>Inventaire / Stock</td></tr>
+                <tr><td>Supplier</td><td>Fournisseur</td></tr>
+                <tr><td>Distributor</td><td>Distributeur</td></tr>
+                <tr><td>Manufacturing</td><td>Fabrication</td></tr>
+                <tr><td>Assembly</td><td>Assemblage</td></tr>
+                <tr><td>Packaging</td><td>Emballage</td></tr>
+                <tr><td>Delivery</td><td>Livraison</td></tr>
+                <tr><td>After-sales service</td><td>Service après-vente</td></tr>
+                <tr><td>Maintenance</td><td>Maintenance</td></tr>
+                <tr><td>Cost driver</td><td>Inducteur de coût</td></tr>
+                <tr><td>Differentiation</td><td>Différenciation</td></tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

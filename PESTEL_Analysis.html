@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PESTEL Analysis - General Environment Analysis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #2B5797;
+            --light-blue: #D5E8F0;
+            --light-green: #E8F5E9;
+            --light-orange: #FFF3E0;
+            --light-purple: #F3E5F5;
+            --yellow-box: #FFF9E6;
+            --gray-text: #555555;
+            --border-color: #CCCCCC;
+        }
+
+        body {
+            font-family: 'Source Sans 3', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 20px 30px;
+            margin: -40px -40px 30px -40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+        }
+
+        .header .icon {
+            font-size: 32px;
+        }
+
+        h2 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 22px;
+            font-weight: 700;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-intro {
+            font-size: 16px;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .definition-box {
+            background: var(--yellow-box);
+            border: 1px solid #F5E6B3;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+
+        .definition-box p {
+            font-size: 16px;
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .definition-box .french {
+            font-style: italic;
+            color: var(--gray-text);
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .factor-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .factor-card {
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 4px;
+            min-height: 200px;
+        }
+
+        .factor-card.political {
+            background: var(--light-blue);
+        }
+
+        .factor-card.economic {
+            background: var(--light-green);
+        }
+
+        .factor-card.social {
+            background: var(--light-orange);
+        }
+
+        .factor-card.technological {
+            background: var(--light-purple);
+        }
+
+        .factor-card.ecological {
+            background: #E8F5E9;
+        }
+
+        .factor-card.legal {
+            background: #FFF3E0;
+        }
+
+        .factor-card .emoji {
+            font-size: 28px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .factor-card h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .factor-card .french-name {
+            font-size: 14px;
+            font-style: italic;
+            color: var(--gray-text);
+            margin-bottom: 12px;
+        }
+
+        .factor-card ul {
+            margin-left: 18px;
+            margin-top: 10px;
+        }
+
+        .factor-card li {
+            font-size: 14px;
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .info-box {
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .info-box.purple {
+            background: var(--light-purple);
+        }
+
+        .info-box.yellow {
+            background: var(--yellow-box);
+            border-color: #F5E6B3;
+        }
+
+        .info-box h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .info-box p {
+            font-size: 15px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .info-box li {
+            font-size: 15px;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .info-box strong {
+            font-weight: 700;
+        }
+
+        .info-box em {
+            font-style: italic;
+            color: var(--gray-text);
+        }
+
+        .company-example {
+            border: 2px solid var(--border-color);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+
+        .company-example.blue {
+            background: var(--light-blue);
+            border-color: var(--primary-blue);
+        }
+
+        .company-example h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .company-example h4 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .company-example ul {
+            margin-left: 20px;
+        }
+
+        .company-example li {
+            font-size: 15px;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .vocab-table th {
+            background: var(--primary-blue);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        .vocab-table td {
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .vocab-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>PESTEL Analysis</h1>
+            <div class="icon">🌍</div>
+        </div>
+
+        <h2>📖 What is the General Environment?</h2>
+        
+        <div class="definition-box">
+            <p><strong>General Environment (Macro-Environment)</strong> is all the variables that define the context where companies operate in a socio-economic system.</p>
+            <p>The general environment is different from one country to another. For example, a company working in Morocco (Moroccan or foreign) must understand how the variables of this socio-economic system work and how they can affect its activities.</p>
+            <p><strong>Important:</strong> The company's results and even its survival depend on understanding the environment and the company's ability to adapt to it.</p>
+            <p class="french"><em>Environnement général (macro-environnement) : ensemble des variables qui délimitent le contexte des entreprises dans un système socio-économique.</em></p>
+        </div>
+
+        <h2>🔍 What is PESTEL Analysis?</h2>
+        
+        <p class="section-intro">PESTEL is a strategic analysis tool that companies use to study their general environment. The name comes from six families of factors:</p>
+
+        <div class="factor-grid">
+            <div class="factor-card political">
+                <span class="emoji">🏛️</span>
+                <h3>P - Political Factors</h3>
+                <p class="french-name">Facteurs Politiques</p>
+                <ul>
+                    <li>Tax policy</li>
+                    <li>Support for SMEs (small and medium enterprises)</li>
+                    <li>Development strategy</li>
+                    <li>Government stability</li>
+                </ul>
+            </div>
+
+            <div class="factor-card economic">
+                <span class="emoji">💰</span>
+                <h3>E - Economic Factors</h3>
+                <p class="french-name">Facteurs Économiques</p>
+                <ul>
+                    <li>Economic cycles</li>
+                    <li>GDP/GNP trends</li>
+                    <li>Interest rates</li>
+                    <li>Inflation</li>
+                    <li>Fuel prices</li>
+                    <li>Available income</li>
+                </ul>
+            </div>
+
+            <div class="factor-card social">
+                <span class="emoji">👥</span>
+                <h3>S - Socio-Cultural Factors</h3>
+                <p class="french-name">Facteurs Socio-Culturels</p>
+                <ul>
+                    <li>Demographics (population characteristics)</li>
+                    <li>Income distribution</li>
+                    <li>Social mobility</li>
+                    <li>Lifestyle changes</li>
+                    <li>Attitudes toward work</li>
+                    <li>Education levels</li>
+                </ul>
+            </div>
+
+            <div class="factor-card technological">
+                <span class="emoji">💻</span>
+                <h3>T - Technological Factors</h3>
+                <p class="french-name">Facteurs Technologiques</p>
+                <ul>
+                    <li>Public spending on R&D (Research and Development)</li>
+                    <li>Speed of development</li>
+                    <li>Ease of technology transfer</li>
+                    <li>Obsolescence rates</li>
+                    <li>Access to ICT (information and communication technologies)</li>
+                    <li>Infrastructure and prices</li>
+                </ul>
+            </div>
+
+            <div class="factor-card ecological">
+                <span class="emoji">🌱</span>
+                <h3>E - Ecological Factors</h3>
+                <p class="french-name">Facteurs Écologiques</p>
+                <ul>
+                    <li>Environmental protection laws</li>
+                    <li>Waste treatment</li>
+                    <li>Energy consumption</li>
+                    <li>Renewable energy development</li>
+                    <li>Population's ecological awareness</li>
+                </ul>
+            </div>
+
+            <div class="factor-card legal">
+                <span class="emoji">⚖️</span>
+                <h3>L - Legal Factors</h3>
+                <p class="french-name">Facteurs Légaux</p>
+                <ul>
+                    <li>Commercial legislation</li>
+                    <li>Labor law</li>
+                    <li>Competition legislation</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>⚠️ Important Remarks about PESTEL</h2>
+
+        <div class="info-box purple">
+            <h3>💡 Key Points to Remember:</h3>
+            
+            <p style="margin-top: 15px;"><strong>1. Each Factor Has Many Aspects</strong></p>
+            <p>Each type of PESTEL factor includes various elements. Each element covers different aspects and needs consideration of different variables.</p>
+            <p><em>Example: Economic factors include interest rates, but interest rates themselves involve consumer loans, business loans, savings rates, etc.</em></p>
+
+            <p style="margin-top: 15px;"><strong>2. Need for Reliable Data</strong></p>
+            <p>PESTEL analysis must be based on data from reliable sources. You must:</p>
+            <ul>
+                <li>Determine which aspects and variables are relevant for your analysis</li>
+                <li>Identify sources that can provide quality data</li>
+                <li>Verify information from multiple sources when possible</li>
+            </ul>
+
+            <p style="margin-top: 15px;"><strong>3. Choose What Matters</strong></p>
+            <p>Not all factors are equally important for every company. You must focus on the factors that have the biggest impact on your specific business.</p>
+        </div>
+
+        <div class="info-box yellow">
+            <h3>📋 How to Conduct a Good PESTEL Analysis:</h3>
+            <ul>
+                <li><strong>Step 1:</strong> Identify which PESTEL factors affect your industry</li>
+                <li><strong>Step 2:</strong> Collect data from reliable sources (government reports, statistics, research studies)</li>
+                <li><strong>Step 3:</strong> Analyze how each factor can create opportunities or threats</li>
+                <li><strong>Step 4:</strong> Prioritize the most important factors for your company</li>
+                <li><strong>Step 5:</strong> Update your analysis regularly because the environment changes</li>
+            </ul>
+        </div>
+
+        <h2>🏢 MOROCCAN COMPANY EXAMPLE: OCP Group</h2>
+
+        <div class="company-example blue">
+            <h3>How OCP Uses PESTEL Analysis</h3>
+            <p><em>OCP Group is Morocco's largest mining company, producing phosphate and fertilizers</em></p>
+
+            <h4>🏛️ Political Factors:</h4>
+            <ul>
+                <li><strong>Opportunity:</strong> Strong government support for mining sector development</li>
+                <li><strong>Opportunity:</strong> Morocco's good diplomatic relations with African countries for expansion</li>
+                <li><strong>Threat:</strong> Political instability in some target markets in Africa</li>
+            </ul>
+
+            <h4>💰 Economic Factors:</h4>
+            <ul>
+                <li><strong>Opportunity:</strong> Growing global food demand increases need for fertilizers</li>
+                <li><strong>Opportunity:</strong> Rising agricultural investment in Africa</li>
+                <li><strong>Threat:</strong> Fluctuating global phosphate prices affect revenues</li>
+                <li><strong>Threat:</strong> Economic crises reduce farmers' purchasing power</li>
+            </ul>
+
+            <h4>👥 Socio-Cultural Factors:</h4>
+            <ul>
+                <li><strong>Opportunity:</strong> Population growth means more food demand</li>
+                <li><strong>Opportunity:</strong> Increasing awareness of food security in Africa</li>
+                <li><strong>Threat:</strong> Need to train local workforce in different African countries</li>
+            </ul>
+
+            <h4>💻 Technological Factors:</h4>
+            <ul>
+                <li><strong>Opportunity:</strong> New mining technologies improve efficiency and reduce costs</li>
+                <li><strong>Opportunity:</strong> Digital tools for better supply chain management</li>
+                <li><strong>Threat:</strong> High investment needed for technology modernization</li>
+                <li><strong>Threat:</strong> Competitors adopting new technologies quickly</li>
+            </ul>
+
+            <h4>🌱 Ecological Factors:</h4>
+            <ul>
+                <li><strong>Opportunity:</strong> Growing market for organic and eco-friendly fertilizers</li>
+                <li><strong>Threat:</strong> Strict environmental regulations for mining activities</li>
+                <li><strong>Threat:</strong> Water scarcity affects mining operations</li>
+                <li><strong>Threat:</strong> Pressure to reduce carbon emissions</li>
+            </ul>
+
+            <h4>⚖️ Legal Factors:</h4>
+            <ul>
+                <li><strong>Opportunity:</strong> Favorable mining laws in Morocco</li>
+                <li><strong>Threat:</strong> Different regulations in each African country where OCP operates</li>
+                <li><strong>Threat:</strong> Changing international trade agreements</li>
+            </ul>
+        </div>
+
+        <h2>📚 VOCABULARY BOX</h2>
+        
+        <table class="vocab-table">
+            <thead>
+                <tr>
+                    <th>English</th>
+                    <th>Français</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>General environment</td><td>Environnement général</td></tr>
+                <tr><td>Macro-environment</td><td>Macro-environnement</td></tr>
+                <tr><td>PESTEL analysis</td><td>Analyse PESTEL</td></tr>
+                <tr><td>Political factors</td><td>Facteurs politiques</td></tr>
+                <tr><td>Economic factors</td><td>Facteurs économiques</td></tr>
+                <tr><td>Socio-cultural factors</td><td>Facteurs socio-culturels</td></tr>
+                <tr><td>Technological factors</td><td>Facteurs technologiques</td></tr>
+                <tr><td>Ecological factors</td><td>Facteurs écologiques</td></tr>
+                <tr><td>Legal factors</td><td>Facteurs légaux</td></tr>
+                <tr><td>Tax policy</td><td>Politique fiscale</td></tr>
+                <tr><td>GDP (Gross Domestic Product)</td><td>PIB (Produit Intérieur Brut)</td></tr>
+                <tr><td>GNP (Gross National Product)</td><td>PNB (Produit National Brut)</td></tr>
+                <tr><td>Interest rates</td><td>Taux d'intérêt</td></tr>
+                <tr><td>Inflation</td><td>Inflation</td></tr>
+                <tr><td>Demographics</td><td>Démographie</td></tr>
+                <tr><td>Income distribution</td><td>Distribution des revenus</td></tr>
+                <tr><td>Social mobility</td><td>Mobilité sociale</td></tr>
+                <tr><td>Lifestyle</td><td>Style de vie</td></tr>
+                <tr><td>R&D (Research and Development)</td><td>R&D (Recherche et Développement)</td></tr>
+                <tr><td>Technology transfer</td><td>Transfert de technologie</td></tr>
+                <tr><td>Obsolescence</td><td>Obsolescence</td></tr>
+                <tr><td>ICT (Information and Communication Technologies)</td><td>TIC (Technologies de l'Information et de la Communication)</td></tr>
+                <tr><td>Environmental protection</td><td>Protection de l'environnement</td></tr>
+                <tr><td>Waste treatment</td><td>Traitement des déchets</td></tr>
+                <tr><td>Renewable energy</td><td>Énergie renouvelable</td></tr>
+                <tr><td>Ecological awareness</td><td>Conscience écologique</td></tr>
+                <tr><td>Commercial legislation</td><td>Législation commerciale</td></tr>
+                <tr><td>Labor law</td><td>Droit du travail</td></tr>
+                <tr><td>Competition legislation</td><td>Législation sur la concurrence</td></tr>
+                <tr><td>Opportunity</td><td>Opportunité</td></tr>
+                <tr><td>Threat</td><td>Menace</td></tr>
+                <tr><td>Reliable sources</td><td>Sources fiables</td></tr>
+                <tr><td>Variables</td><td>Variables</td></tr>
+                <tr><td>Socio-economic system</td><td>Système socio-économique</td></tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
