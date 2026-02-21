@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources and Capabilities - Strategic Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #2B5797;
+            --light-blue: #D5E8F0;
+            --light-green: #E8F5E9;
+            --light-orange: #FFF3E0;
+            --yellow-box: #FFF9E6;
+            --gray-text: #555555;
+            --border-color: #CCCCCC;
+        }
+
+        body {
+            font-family: 'Source Sans 3', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 20px 30px;
+            margin: -40px -40px 30px -40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+        }
+
+        .header .icon {
+            font-size: 32px;
+        }
+
+        h2 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 22px;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .definition-box {
+            background: white;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .definition-box p {
+            font-size: 16px;
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .definition-box .french {
+            font-style: italic;
+            color: var(--gray-text);
+            font-size: 14px;
+        }
+
+        .info-box {
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .info-box.blue {
+            background: var(--light-blue);
+        }
+
+        .info-box.green {
+            background: var(--light-green);
+        }
+
+        .info-box.orange {
+            background: var(--light-orange);
+        }
+
+        .info-box h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .info-box p {
+            font-size: 15px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .info-box li {
+            font-size: 15px;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .info-box strong {
+            font-weight: 700;
+        }
+
+        .info-box em {
+            font-style: italic;
+            color: var(--gray-text);
+        }
+
+        .key-point {
+            background: #f8f9fa;
+            border-left: 4px solid var(--primary-blue);
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 15px;
+        }
+
+        .key-point strong {
+            color: var(--primary-blue);
+        }
+
+        .vrio-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .vrio-table th {
+            background: var(--primary-blue);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .vrio-table td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .vrio-table td:first-child {
+            background: var(--light-blue);
+            font-weight: 700;
+            width: 25%;
+        }
+
+        .vrio-letter {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--primary-blue);
+        }
+
+        .company-example {
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .company-example.maroc {
+            background: var(--light-blue);
+        }
+
+        .company-example.cosumar {
+            background: var(--light-green);
+        }
+
+        .company-example h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .company-example h4 {
+            font-weight: 700;
+            font-size: 16px;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+
+        .company-example p, .company-example ul {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .company-example ul {
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+
+        .company-example li {
+            margin-bottom: 6px;
+        }
+
+        .company-example .core-competency {
+            font-style: italic;
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 4px;
+        }
+
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .vocab-table thead {
+            background: var(--yellow-box);
+        }
+
+        .vocab-table th {
+            padding: 12px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .vocab-table td {
+            border: 1px solid var(--border-color);
+            padding: 10px 15px;
+            font-size: 15px;
+        }
+
+        .vocab-table td:first-child {
+            font-weight: 700;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+                padding: 20px;
+            }
+
+            .header {
+                margin: -20px -20px 20px -20px;
+            }
+
+            h2 {
+                page-break-after: avoid;
+            }
+
+            .info-box, .company-example {
+                page-break-inside: avoid;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .header {
+                margin: -20px -20px 20px -20px;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>RESOURCES AND CAPABILITIES</h1>
+            <div class="icon">💎</div>
+        </div>
+
+        <h2>📖 DEFINITION</h2>
+        <div class="definition-box">
+            <p>Resources and capabilities are the building blocks of a company's strategy. They are what a company has (resources) and what it can do (capabilities) to create value and compete in the market.</p>
+            <p class="french">(Les ressources et capacités sont les éléments de base de la stratégie d'une entreprise. Ce sont ce qu'une entreprise possède (ressources) et ce qu'elle peut faire (capacités) pour créer de la valeur et être compétitive sur le marché.)</p>
+        </div>
+
+        <h2>🏗️ TYPES OF RESOURCES</h2>
+        
+        <div class="info-box green">
+            <h3>1. Tangible Resources (Physical)</h3>
+            <p><em>Things you can touch and see:</em></p>
+            <ul>
+                <li><strong>Financial:</strong> Money, profits, investments, ability to borrow</li>
+                <li><strong>Physical:</strong> Buildings, factories, machines, equipment, land</li>
+                <li><strong>Technological:</strong> Patents, licenses, databases, software systems</li>
+            </ul>
+        </div>
+
+        <div class="info-box orange">
+            <h3>2. Intangible Resources (Non-Physical)</h3>
+            <p><em>Things you cannot touch but are very valuable:</em></p>
+            <ul>
+                <li><strong>Brand reputation:</strong> Company image, customer trust, brand awareness</li>
+                <li><strong>Human resources:</strong> Skills, knowledge, experience of employees</li>
+                <li><strong>Organizational culture:</strong> Company values, way of working together</li>
+            </ul>
+        </div>
+
+        <h2>⚙️ WHAT ARE CAPABILITIES?</h2>
+        <div class="definition-box">
+            <p>Capabilities are the skills and abilities that a company develops to use its resources effectively. They show what a company does well.</p>
+            <p style="margin-top: 15px;"><strong>Examples of capabilities:</strong></p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li><strong>Innovation capability:</strong> Creating new products or improving existing ones</li>
+                <li><strong>Marketing capability:</strong> Understanding customers and promoting products well</li>
+                <li><strong>Operations capability:</strong> Making products efficiently with good quality</li>
+                <li><strong>Customer service capability:</strong> Helping customers and solving their problems quickly</li>
+            </ul>
+        </div>
+
+        <h2>🌟 CORE COMPETENCIES & VRIO FRAMEWORK</h2>
+        <div class="definition-box">
+            <p><strong>Core competencies</strong> are the most important capabilities that make a company special and better than competitors. To be a true competitive advantage, resources and capabilities must pass the <strong>VRIO test:</strong></p>
+        </div>
+
+        <table class="vrio-table">
+            <thead>
+                <tr>
+                    <th>VRIO</th>
+                    <th>Question to Ask</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="vrio-letter">V</span><br>Valuable</td>
+                    <td>Does it help the company make money or reduce costs?<br>Does it help respond to opportunities or threats?</td>
+                </tr>
+                <tr>
+                    <td><span class="vrio-letter">R</span><br>Rare</td>
+                    <td>Do only a few competitors have this resource or capability?<br>Is it hard to find in the market?</td>
+                </tr>
+                <tr>
+                    <td><span class="vrio-letter">I</span><br>Inimitable</td>
+                    <td>Is it expensive or difficult for competitors to copy?<br>Would it take a long time to develop?</td>
+                </tr>
+                <tr>
+                    <td><span class="vrio-letter">O</span><br>Organized</td>
+                    <td>Is the company organized to use this resource well?<br>Are the systems and processes in place?</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="key-point">
+            <strong>💡 Key Point:</strong> Only resources and capabilities that pass all four tests (V-R-I-O) create a sustainable competitive advantage.
+        </div>
+
+        <h2>🏢 MOROCCAN COMPANY EXAMPLES</h2>
+
+        <div class="company-example maroc">
+            <h3>Maroc Telecom (IAM)</h3>
+            
+            <h4>Resources:</h4>
+            <ul>
+                <li>Extensive telecommunications network across Morocco</li>
+                <li>Large customer base (over 20 million subscribers)</li>
+                <li>Financial strength and investment capacity</li>
+                <li>Licensed spectrum for mobile and internet services</li>
+                <li>Retail stores and customer service centers nationwide</li>
+            </ul>
+
+            <h4>Capabilities:</h4>
+            <ul>
+                <li>Deploy and maintain telecommunications infrastructure efficiently</li>
+                <li>Manage large-scale network operations with high reliability</li>
+                <li>Adapt services to different customer segments (individuals, businesses)</li>
+                <li>Expand into digital services (mobile money, cloud services)</li>
+                <li>Build partnerships across Africa for regional growth</li>
+            </ul>
+
+            <div class="core-competency">
+                <h4>Core Competency:</h4>
+                <p>Network infrastructure management - operating reliable telecommunications services across diverse geographic areas (cities, rural areas, mountains). This expertise took decades to develop and includes technical knowledge, relationships with suppliers, and understanding of local needs.</p>
+            </div>
+        </div>
+
+        <div class="company-example cosumar">
+            <h3>Cosumar</h3>
+            
+            <h4>Resources:</h4>
+            <ul>
+                <li>Sugar production facilities in multiple locations</li>
+                <li>Agricultural land and partnerships with sugar beet farmers</li>
+                <li>Distribution network covering all Morocco</li>
+                <li>Strong brand names (Cosumar, Enmer, Sucrafor)</li>
+                <li>Technical expertise in sugar refining and processing</li>
+            </ul>
+
+            <h4>Capabilities:</h4>
+            <ul>
+                <li>Coordinate agricultural supply chain from farmers to factory</li>
+                <li>Maintain consistent product quality across all production sites</li>
+                <li>Optimize production costs through economies of scale</li>
+                <li>Manage seasonal variations in sugar beet and cane supply</li>
+                <li>Develop new sugar products for different customer needs</li>
+            </ul>
+
+            <div class="core-competency">
+                <h4>Core Competency:</h4>
+                <p>Integrated sugar value chain management - controlling the entire process from working with farmers to delivering products to retailers. This integration allows Cosumar to ensure quality, control costs, and maintain stable supply. It took many years to build these relationships and systems.</p>
+            </div>
+        </div>
+
+        <h2>📚 VOCABULARY BOX</h2>
+        
+        <table class="vocab-table">
+            <thead>
+                <tr>
+                    <th>English</th>
+                    <th>Français</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Resources</td><td>Ressources</td></tr>
+                <tr><td>Capabilities</td><td>Capacités</td></tr>
+                <tr><td>Core competency</td><td>Compétence clé / distinctive</td></tr>
+                <tr><td>Competitive advantage</td><td>Avantage concurrentiel</td></tr>
+                <tr><td>Tangible</td><td>Tangible / Matériel</td></tr>
+                <tr><td>Intangible</td><td>Intangible / Immatériel</td></tr>
+                <tr><td>To own</td><td>Posséder</td></tr>
+                <tr><td>To create value</td><td>Créer de la valeur</td></tr>
+                <tr><td>Sustainable</td><td>Durable / Soutenable</td></tr>
+                <tr><td>To leverage</td><td>Exploiter / Tirer parti de</td></tr>
+                <tr><td>Brand reputation</td><td>Réputation de la marque</td></tr>
+                <tr><td>Supply chain</td><td>Chaîne d'approvisionnement</td></tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
