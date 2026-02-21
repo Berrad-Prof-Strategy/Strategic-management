@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiches de Management Stratégique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #2B5797;
+            --light-blue: #D5E8F0;
+            --light-green: #E8F5E9;
+            --light-orange: #FFF3E0;
+            --light-purple: #F3E5F5;
+            --gray-text: #555555;
+            --border-color: #CCCCCC;
+        }
+
+        body {
+            font-family: 'Source Sans 3', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .header .subtitle {
+            font-size: 20px;
+            color: var(--gray-text);
+            font-weight: 600;
+        }
+
+        .header .description {
+            margin-top: 20px;
+            font-size: 16px;
+            color: var(--gray-text);
+            line-height: 1.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .intro-box {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .intro-box h2 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .intro-box p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .intro-box ul {
+            margin-left: 25px;
+            margin-top: 15px;
+        }
+
+        .intro-box li {
+            font-size: 16px;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            border: 3px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .card.blue {
+            border-color: var(--primary-blue);
+        }
+
+        .card.blue:hover {
+            background: var(--light-blue);
+        }
+
+        .card.green {
+            border-color: #4CAF50;
+        }
+
+        .card.green:hover {
+            background: var(--light-green);
+        }
+
+        .card.orange {
+            border-color: #FF9800;
+        }
+
+        .card.orange:hover {
+            background: var(--light-orange);
+        }
+
+        .card.purple {
+            border-color: #9C27B0;
+        }
+
+        .card.purple:hover {
+            background: var(--light-purple);
+        }
+
+        .card-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .card-title {
+            font-family: 'Merriweather', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .card-subtitle {
+            font-size: 16px;
+            color: var(--gray-text);
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .card-description {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .card-topics {
+            font-size: 14px;
+            color: var(--gray-text);
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .card-topics strong {
+            color: var(--primary-blue);
+        }
+
+        .card-button {
+            display: inline-block;
+            background: var(--primary-blue);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: background 0.3s ease;
+        }
+
+        .card:hover .card-button {
+            background: #1e3a5f;
+        }
+
+        .footer {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .footer h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .footer p {
+            font-size: 15px;
+            color: var(--gray-text);
+            line-height: 1.6;
+        }
+
+        .footer .email {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .header .subtitle {
+                font-size: 18px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Management Stratégique</h1>
+            <div class="subtitle">Fiches Pédagogiques en Anglais Simplifié pour la filière Gestion de la FSJESTE</div>
+            <div class="description">
+                Votre professeur, Jamal Berrad, vous souhaite la bienvenue sur votre bibliothèque de fiches de cours ! Ces ressources sont conçues pour vous aider à comprendre les concepts clés du management stratégique avec un anglais accessible. Chaque fiche contient des définitions claires, des exemples marocains concrets, et du vocabulaire bilingue. Une fiche spécifique contient un glossaire anglais-français-arabe de 200 termes de base du management stratégique. Bon courage !
+            </div>
+        </div>
+
+        <div class="intro-box">
+            <h2>📖 Comment utiliser ces fiches ?</h2>
+            <p>Chaque fiche est structurée pour faciliter votre apprentissage :</p>
+            <ul>
+                <li><strong>Définitions simples</strong> : Concepts expliqués avec un anglais clair</li>
+                <li><strong>Traductions françaises</strong> : Termes techniques traduits pour vous aider</li>
+                <li><strong>Exemples marocains</strong> : Cas concrets d'entreprises que vous connaissez (OCP, Marjane, Royal Air Maroc, Attijariwafa Bank...)</li>
+                <li><strong>Vocabulaire bilingue</strong> : Liste de mots-clés anglais-français à la fin de chaque fiche</li>
+                <li><strong>Design visuel</strong> : Couleurs et emojis pour faciliter la mémorisation</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>💡 Remarque :</strong> Les fiches seront publiées progressivement.</p>
+        </div>
+
+        <div class="cards-grid">
+	<a href="strategy_components.html" class="card orange">
+                <span class="card-icon">🎯</span>
+                <div class="card-title">Strategy and Components</div>
+                <div class="card-subtitle">Stratégie et Composantes</div>
+                <div class="card-description">
+                    Découvrez la définition de la stratégie et les caractéristiques des décisions stratégiques et identifiez les composantes de la stratégie.
+                </div>
+                <div class="card-topics">
+                    <strong>Exemple :</strong> Les composantes de la stratégie de Nike: mission, vision, objectifs, périmètre d'activité, avantage concurrentiel. 
+                </div>
+                <span class="card-button">Ouvrir la fiche →</span>
+            </a>            
+
+	<a href="Strategic_Management_Process.html" class="card blue">
+                <span class="card-icon">🎯</span>
+                <div class="card-title">Strategic Management Process</div>
+                <div class="card-subtitle">Processus de Management Stratégique</div>
+                <div class="card-description">
+                    Découvrez les trois phases essentielles du management stratégique : Formulation, Implémentation et Contrôle. Comprend des exemples détaillés d'OCP et Attijariwafa Bank.
+                </div>
+                <div class="card-topics">
+                    <strong>Thèmes :</strong> Diagnostic stratégique, Objectifs, Gap stratégique, Options stratégiques, Mise en œuvre, Contrôle
+                </div>
+                <span class="card-button">Ouvrir la fiche →</span>
+            </a>
+
+	<a href="Strategic_Decision_Making_Dimensions.html" class="card blue">
+                <span class="card-icon">🎯</span>
+                <div class="card-title">Strategic Decision-Making</div>
+                <div class="card-subtitle">Prise de Décision Stratégique</div>
+                <div class="card-description">
+                    Découvrez les dimensions de la prise de décision stratégque: (1) Technico-économique, (2) Social et Politique et (3) Bureaucratique. Comprend des exemples de la modernisation de la flotte de la RAM et du projet Al Boraq de l'ONCF.
+                </div>
+                <div class="card-topics">
+                    <strong>Thèmes :</strong> Trois dimensions de la prise de décision stratégique et leur intégration
+                </div>
+                <span class="card-button">Ouvrir la fiche →</span>
+            </a>
+
+            <a href="PESTEL_Analysis.html" class="card green">
+                <span class="card-icon">🌍</span>
+                <div class="card-title">PESTEL Analysis</div>
+                <div class="card-subtitle">Analyse PESTEL</div>
+                <div class="card-description">
+                    Apprenez à analyser l'environnement général d'une entreprise avec les 6 facteurs PESTEL : Politiques, Économiques, Socioculturels, Technologiques, Écologiques et Légaux.
+                </div>
+                <div class="card-topics">
+                    <strong>Exemple :</strong> OCP Group - Analyse complète de chaque facteur PESTEL avec opportunités et menaces
+                </div>
+                <span class="card-button">Ouvrir la fiche →</span>
+            </a>
+
+<a href="Porters_Five_Forces.html" class="card orange">
+                <span class="card-icon">⚔️</span>
+                <div class="card-title">Porter's Five Forces</div>
+                <div class="card-subtitle">Cinq Forces de Porter</div>
+                <div class="card-description">
+                    Évaluez l'intensité concurrentielle et l'attractivité d'une industrie avec ce modèle classique : nouveaux entrants, pouvoir des fournisseurs, pouvoir des clients, substituts, et rivalité.
+                </div>
+                <div class="card-topics">
+                    <strong>Exemple :</strong> Royal Air Maroc - Analyse complète de l'industrie aérienne au Maroc avec évaluation de chaque force
+                </div>
+                <span class="card-button">Ouvrir la fiche →</span>
+            </a>
+
+            <a href="Resources_Capabilities.html" class="card purple">
+                <span class="card-icon">⛓️</span>
+                <div class="card-title">Resources and Capabilities</div>
+                <div class="card-subtitle">Ressources et Capacités</div>
+                <div class="card-description">
+                    Identifiez les diférentes sources et capacités (compétences) de l'entreprise, leur rôle dans la création de la valeur et leur impact sur les coûts. Découvrez les conditions pour qu'elles soient des sources d'avantage concurrentiel.
+                </div>
+                <div class="card-topics">
+                    <strong>Exemple :</strong> Maroc Telecom et Cosumar - Analyse d'un ensemble de leurs ressources et compétences
+                </div>
+                <span class="card-button">Ouvrir la fiche →</span>
+            </a>
+            
+	    <a href="Porters_Value_Chain.html" class="card purple">
+                <span class="card-icon">⛓️</span>
+                <div class="card-title">Porter's Value Chain</div>
+                <div class="card-subtitle">Chaîne de Valeur de Porter</div>
+                <div class="card-description">
+                    Identifiez les sources d'avantage concurrentiel en analysant les activités primaires et de soutien. Apprenez les 5 questions clés pour analyser chaque activité en profondeur.
+                </div>
+                <div class="card-topics">
+                    <strong>Exemple :</strong> Marjane - Analyse détaillée de l'activité "Approvisionnement" avec les 5 questions analytiques
+                </div>
+                <span class="card-button">Ouvrir la fiche →</span>
+            </a>
+        
+	<a href="strategic_mgmt_glossary.html" class="card blue">
+                <span class="card-icon">🎯</span>
+                <div class="card-title">Strategic Management Glossary</div>
+                <div class="card-subtitle">Glossaire de Management Stratégique</div>
+                <div class="card-description">
+                    Découvrez 200 termes basiques du management stratégique en trois langues anglais-français-arabe. 
+                </div>
+                <div class="card-topics">
+                    <strong>Remarque :</strong> Les termes sont regroupés en sections thématiques. 
+                </div>
+                <span class="card-button">Ouvrir la fiche →</span>
+            </a>
+	</div>
+
+        <div class="footer">
+            <h3>📧 Besoin d'aide ?</h3>
+            <p>
+                Si vous avez des questions sur ces fiches ou si vous souhaitez des clarifications sur certains concepts, 
+                n'hésitez pas à poser des questions en classe ou à contacter votre professeur: jberrad@uae.ac.ma
+            </p>
+		<p>
+                Dans les deux cas, les clarifications seront données en classe, durant les séances de cours. 
+            </p>
+            <p style="margin-top: 15px;">
+                <strong>💡 Astuce d'étude :</strong> Relisez régulièrement le vocabulaire bilingue à la fin de chaque fiche pour renforcer votre anglais professionnel en management.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
