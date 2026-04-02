@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWOT Analysis Card</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .card {
+            background: white;
+            width: 100%;
+            max-width: 800px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .header .icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            background: #667eea;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .definition {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            line-height: 1.6;
+        }
+        
+        .definition .english {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .definition .french {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .key-points {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .point {
+            background: #f8f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #764ba2;
+            display: flex;
+            align-items: start;
+        }
+        
+        .point::before {
+            content: "✓";
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.3em;
+            margin-right: 10px;
+        }
+        
+        .swot-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .swot-box {
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            min-height: 120px;
+        }
+        
+        .swot-box h3 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 8px;
+        }
+        
+        .swot-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .swot-box li {
+            margin: 8px 0;
+            padding-left: 15px;
+            position: relative;
+        }
+        
+        .swot-box li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+        }
+        
+        .strengths {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+        
+        .weaknesses {
+            background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+        }
+        
+        .opportunities {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .threats {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        
+        .example {
+            background: #fff9e6;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #ffd700;
+        }
+        
+        .example strong {
+            color: #d4a017;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .vocabulary-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .vocabulary-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+        
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        
+        .vocab-item {
+            background: rgba(255,255,255,0.15);
+            padding: 12px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .vocab-item .term {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .vocab-item .translation {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 600px) {
+            .swot-grid, .vocab-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="icon">🎯</div>
+            <h1>SWOT Analysis</h1>
+        </div>
+        
+        <div class="content">
+            <!-- Definition Section -->
+            <div class="section">
+                <div class="section-title">📖 Definition (Simple English)</div>
+                <div class="definition">
+                    <div class="english">
+                        SWOT analysis is a tool to study a company's internal strengths and weaknesses, and external opportunities and threats. It presents a synthesis of the conclusions of the external and internal diagnosis.
+                    </div>
+                    <div class="french">
+                        (Une analyse SWOT est un outil pour étudier les forces et faiblesses internes d'une entreprise, ainsi que les opportunités et menaces externes. Elle présente un résumé des conclusions des diagnostics externe et interne.)
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Key Points Section -->
+            <div class="section">
+                <div class="section-title">🔑 Key Points</div>
+                <div class="key-points">
+                    <div class="point">SWOT stands for: Strengths, Weaknesses, Opportunities, Threats</div>
+                    <div class="point">Strengths and Weaknesses are INTERNAL (inside the company)</div>
+                    <div class="point">Opportunities and Threats are EXTERNAL (outside the company)</div>
+                    <div class="point">SWOT must be based on a rigorous internal and external analysis</div>
+                    <div class="point">A SWOT analysis  should be made separately for each strategic activity of the company.</div>
+                </div>
+            </div>
+            
+            <!-- SWOT Grid -->
+            <div class="section">
+                <div class="section-title">📊 The SWOT Framework</div>
+                <div class="swot-grid">
+                    <div class="swot-box strengths">
+                        <h3>💪 Strengths (Forces)</h3>
+                        <ul>
+                            <li>What do we do well?</li>
+                            <li>What advantages do we have?</li>
+                        </ul>
+                    </div>
+                    <div class="swot-box weaknesses">
+                        <h3>⚠️ Weaknesses (Faiblesses)</h3>
+                        <ul>
+                            <li>What can we improve?</li>
+                            <li>What are our limitations?</li>
+                        </ul>
+                    </div>
+                    <div class="swot-box opportunities">
+                        <h3>🌟 Opportunities (Opportunités)</h3>
+                        <ul>
+                            <li>What environmental trends help us?</li>
+                            <li>What can we take advantage of?</li>
+                        </ul>
+                    </div>
+                    <div class="swot-box threats">
+                        <h3>⚡ Threats (Menaces)</h3>
+                        <ul>
+                            <li>What obstacles do we face?</li>
+                            <li>What could harm our business?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Example Section -->
+            <div class="section">
+                <div class="section-title">💡 Example: Coffee Shop</div>
+                <div class="example">
+                    <strong>🎯 Case Study:</strong>
+                    <p><strong>Strengths:</strong> Good location, friendly staff, quality coffee</p>
+                    <p><strong>Weaknesses:</strong> Small space, limited parking, narrow breakfast menu</p>
+                    <p><strong>Opportunities:</strong> Growing coffee market, delivery apps, new faculty nearby</p>
+                    <p><strong>Threats:</strong> New Starbucks nearby, rising coffee bean prices, economic crisis</p>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porter's Generic Competitive Strategies</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #2B5797;
+            --light-blue: #D5E8F0;
+            --light-green: #E8F5E9;
+            --light-orange: #FFF3E0;
+            --light-purple: #F3E5F5;
+            --yellow-box: #FFF9E6;
+            --light-red: #FFEBEE;
+            --gray-text: #555555;
+            --border-color: #CCCCCC;
+        }
+
+        body {
+            font-family: 'Source Sans 3', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 20px 30px;
+            margin: -40px -40px 30px -40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+        }
+
+        .header .icon {
+            font-size: 32px;
+        }
+
+        h2 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 22px;
+            font-weight: 700;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-intro {
+            font-size: 16px;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .definition-box {
+            background: var(--yellow-box);
+            border: 1px solid #F5E6B3;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+
+        .definition-box p {
+            font-size: 16px;
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .definition-box ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .definition-box li {
+            font-size: 15px;
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .definition-box .french {
+            font-style: italic;
+            color: var(--gray-text);
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        /* Strategy Matrix */
+        .matrix-container {
+            margin: 30px 0;
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+        }
+
+        .matrix-table th, .matrix-table td {
+            border: 2px solid var(--primary-blue);
+            padding: 16px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .matrix-table .corner {
+            background: white;
+            border-color: white;
+        }
+
+        .matrix-table .axis-header {
+            background: var(--primary-blue);
+            color: white;
+            font-weight: 700;
+            font-family: 'Merriweather', serif;
+        }
+
+        .matrix-table .cell-cost {
+            background: var(--light-blue);
+            font-weight: 600;
+        }
+
+        .matrix-table .cell-diff {
+            background: var(--light-green);
+            font-weight: 600;
+        }
+
+        .matrix-table .cell-focus-cost {
+            background: #D5E8F0;
+            font-weight: 600;
+        }
+
+        .matrix-table .cell-focus-diff {
+            background: #C8E6C9;
+            font-weight: 600;
+        }
+
+        .matrix-table .cell-stuck {
+            background: #FFEBEE;
+            font-weight: 600;
+            color: #C62828;
+        }
+
+        .axis-label {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-family: 'Merriweather', serif;
+            font-size: 14px;
+        }
+
+        .matrix-caption {
+            font-size: 13px;
+            font-style: italic;
+            color: var(--gray-text);
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        /* Strategy cards */
+        .strategy-card {
+            border: 2px solid var(--border-color);
+            padding: 22px;
+            margin-bottom: 22px;
+            border-radius: 4px;
+        }
+
+        .strategy-card.blue {
+            background: var(--light-blue);
+            border-color: var(--primary-blue);
+        }
+
+        .strategy-card.green {
+            background: var(--light-green);
+            border-color: #4CAF50;
+        }
+
+        .strategy-card.orange {
+            background: var(--light-orange);
+            border-color: #FF9800;
+        }
+
+        .strategy-card.red {
+            background: var(--light-red);
+            border-color: #F44336;
+        }
+
+        .strategy-card .emoji {
+            font-size: 28px;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .strategy-card h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+        }
+
+        .strategy-card .french-name {
+            font-size: 14px;
+            font-style: italic;
+            color: var(--gray-text);
+            margin-bottom: 12px;
+        }
+
+        .strategy-card p {
+            font-size: 15px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .strategy-card ul {
+            margin-left: 18px;
+            margin-top: 6px;
+        }
+
+        .strategy-card li {
+            font-size: 14px;
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .strategy-card strong {
+            font-weight: 700;
+        }
+
+        /* Two-column layout for pros/cons */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .col-box {
+            background: rgba(255,255,255,0.6);
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 4px;
+            padding: 12px;
+        }
+
+        .col-box h4 {
+            font-family: 'Merriweather', serif;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--primary-blue);
+        }
+
+        .col-box ul {
+            margin-left: 15px;
+        }
+
+        .col-box li {
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        /* Info boxes */
+        .info-box {
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .info-box.purple {
+            background: var(--light-purple);
+        }
+
+        .info-box.yellow {
+            background: var(--yellow-box);
+            border-color: #F5E6B3;
+        }
+
+        .info-box.blue {
+            background: var(--light-blue);
+            border-color: var(--primary-blue);
+        }
+
+        .info-box h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .info-box p {
+            font-size: 15px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        .info-box li {
+            font-size: 15px;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .info-box strong {
+            font-weight: 700;
+        }
+
+        /* Company example */
+        .company-example {
+            border: 2px solid var(--border-color);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+
+        .company-example.blue {
+            background: var(--light-blue);
+            border-color: var(--primary-blue);
+        }
+
+        .company-example h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .company-example h4 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .company-example ul {
+            margin-left: 20px;
+        }
+
+        .company-example li {
+            font-size: 15px;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .strategy-badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 13px;
+            margin-left: 10px;
+        }
+
+        .badge-cost { background: #BBDEFB; color: #1565C0; }
+        .badge-diff { background: #C8E6C9; color: #2E7D32; }
+        .badge-focus { background: #FFE082; color: #F57F17; }
+        .badge-stuck { background: #FFCDD2; color: #C62828; }
+
+        /* Vocab table */
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .vocab-table th {
+            background: var(--primary-blue);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        .vocab-table td {
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .vocab-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1>Porter's Generic Competitive Strategies</h1>
+            <div class="icon">🏆</div>
+        </div>
+
+        <h2>📖 What are Generic Competitive Strategies?</h2>
+
+        <div class="definition-box">
+            <p><strong>Porter's Generic Strategies</strong> is a model created by Michael Porter in 1985 to explain how a company can build a <strong>sustainable competitive advantage</strong> — a reason why customers choose YOUR company over competitors.</p>
+            <p>Porter says that there are <strong>only two sources of competitive advantage</strong>:</p>
+            <ul>
+                <li><strong>Being cheaper</strong> than competitors → Lower costs</li>
+                <li><strong>Offereing something unique</strong> to customers → Differentiation</li>
+            </ul>
+            <p>Combined with the <strong>scope of the market</strong> (broad or narrow), this gives <strong>four generic strategies</strong>.</p>
+            <p class="french"><em>Stratégies génériques de Porter : comment une entreprise construit un avantage concurrentiel durable — soit par les coûts, soit par la différenciation, sur un marché large ou étroit.</em></p>
+        </div>
+
+        <h2>🗺️ The Strategy Matrix</h2>
+
+        <p class="section-intro">Porter's matrix has two dimensions: the <strong>source of advantage</strong> (cost or uniqueness) and the <strong>competitive scope</strong> (broad market or narrow segment).</p>
+
+        <div class="matrix-container">
+            <table class="matrix-table">
+                <tr>
+                    <td class="corner" style="width:80px;"></td>
+                    <td class="corner"></td>
+                    <td class="axis-header" colspan="2">SOURCE OF COMPETITIVE ADVANTAGE</td>
+                </tr>
+                <tr>
+                    <td class="corner"></td>
+                    <td class="corner"></td>
+                    <td class="axis-header">💰 Lower Cost</td>
+                    <td class="axis-header">✨ Differentiation (Uniqueness)</td>
+                </tr>
+                <tr>
+                    <td rowspan="2" style="background:#f0f4ff; border:2px solid var(--primary-blue); text-align:center; width:60px;">
+                        <span class="axis-label">COMPETITIVE SCOPE</span>
+                    </td>
+                    <td class="axis-header">🌍 Broad Market<br><span style="font-weight:400; font-size:13px;">(Many segments)</span></td>
+                    <td class="cell-cost">
+                        <strong>Strategy 1</strong><br>
+                        COST LEADERSHIP<br>
+                        <span style="font-size:13px; font-style:italic;">Domination par les coûts</span>
+                    </td>
+                    <td class="cell-diff">
+                        <strong>Strategy 2</strong><br>
+                        DIFFERENTIATION<br>
+                        <span style="font-size:13px; font-style:italic;">Différenciation</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="axis-header">🎯 Narrow Market<br><span style="font-weight:400; font-size:13px;">(One segment)</span></td>
+                    <td class="cell-focus-cost">
+                        <strong>Strategy 3</strong><br>
+                        COST FOCUS<br>
+                        <span style="font-size:13px; font-style:italic;">Focalisation coûts</span>
+                    </td>
+                    <td class="cell-focus-diff">
+                        <strong>Strategy 4</strong><br>
+                        DIFFERENTIATION FOCUS<br>
+                        <span style="font-size:13px; font-style:italic;">Focalisation différenciation</span>
+                    </td>
+                </tr>
+            </table>
+            </div>
+
+        <h2>🎯 The Four Generic Strategies</h2>
+
+        <!-- Strategy 1 -->
+        <div class="strategy-card blue">
+            <h3><span class="emoji">💰</span> Strategy 1: Cost Leadership</h3>
+            <p class="french-name">Stratégie de domination par les coûts</p>
+            <p><strong>Definition:</strong> The company aims to be the <strong>lowest-cost producer</strong> in the industry, selling to a <strong>broad market</strong>. It does not need to have the lowest price, but it has the lowest costs — giving it higher margins or the ability to have lower prices than rivals'.</p>
+            <p><strong>Key question:</strong> How can we produce at a lower cost than everyone else?</p>
+            <p><strong>How to achieve cost leadership:</strong></p>
+            <ul>
+                <li>Large-scale production → <strong>economies of scale</strong> (lower cost per unit)</li>
+                <li>Strict cost control in all departments</li>
+                <li>Efficient operations and supply chain management</li>
+                <li>Use of technology to automate production</li>
+                <li>Negotiate hard with suppliers to reduce input costs</li>
+                <li>Standardized products with few variations</li>
+            </ul>
+            <div class="two-col">
+                <div class="col-box">
+                    <h4>✅ Advantages</h4>
+                    <ul>
+                        <li>Higher profit margins</li>
+                        <li>Can compete on price if needed</li>
+                        <li>More resilient in price wars</li>
+                        <li>Better positioned if buyers have high power</li>
+                    </ul>
+                </div>
+                <div class="col-box">
+                    <h4>⚠️ Risks</h4>
+                    <ul>
+                        <li>Technology changes can eliminate cost advantages</li>
+                        <li>Competitors can imitate cost-reduction methods</li>
+                        <li>Ignoring product innovation</li>
+                        <li>Low brand loyalty from customers</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="margin-top:14px;"><strong>🌍 Real examples:</strong> Ryanair (airlines), Kiabi (clothing retailer)</p>
+        </div>
+
+        <!-- Strategy 2 -->
+        <div class="strategy-card green">
+            <h3><span class="emoji">✨</span> Strategy 2: Differentiation</h3>
+            <p class="french-name">Stratégie de différenciation</p>
+            <p><strong>Definition:</strong> The company offers products or services that are <strong>unique</strong> and valued by customers across a <strong>broad market</strong>. Because the product is special, the company can charge a <strong>premium price</strong>.</p>
+            <p><strong>Key question:</strong> What makes our product different and special enough for customers to pay more?</p>
+            <p><strong>How to achieve differentiation:</strong></p>
+            <ul>
+                <li>Superior product quality or features</li>
+                <li>Strong and prestigious <strong>brand image</strong></li>
+                <li>Excellent <strong>customer service</strong> or after-sales support</li>
+                <li>Innovation and advanced technology</li>
+                <li>Unique design or style</li>
+              </ul>
+            <div class="two-col">
+                <div class="col-box">
+                    <h4>✅ Advantages</h4>
+                    <ul>
+                        <li>Can charge higher prices (premium)</li>
+                        <li>Strong brand loyalty from customers</li>
+                        <li>Less sensitive to price competition</li>
+                        <li>Creates barriers for new entrants</li>
+                    </ul>
+                </div>
+                <div class="col-box">
+                    <h4>⚠️ Risks</h4>
+                    <ul>
+                        <li>High cost to maintain differentiation</li>
+                        <li>Customers may not want to pay premium</li>
+                        <li>Imitation by competitors over time</li>
+                        <li>Changes in customer taste</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="margin-top:14px;"><strong>🌍 Real examples:</strong> Apple (technology), Mercedes-Benz (cars), Rolex (watches), Starbucks (coffee)</p>
+        </div>
+
+        <!-- Strategy 3 -->
+        <div class="strategy-card orange">
+            <h3><span class="emoji">🎯</span> Strategies 3 and 4: Focus</h3>
+            <p class="french-name">Stratégie de focalisation (ou de niche)</p>
+            <p><strong>Definition:</strong> The company concentrates on a <strong>specific market segment</strong> (a niche) — a particular group of customers, a geographic area, or a product category. Within this niche, the company can use either a cost focus or a differentiation focus.</p>
+            <p><strong>Key question:</strong> Which specific group of customers can we serve better than any competitor?</p>
+            <p><strong>Two variants of Focus:</strong></p>
+            <ul>
+                <li><strong>Cost Focus (3):</strong> Offer the lowest price within a specific segment. <br><em>Example: a low-cost airline serving only one region.</em></li>
+                <li><strong>Differentiation Focus (4):</strong> Offer unique products to a specific segment willing to pay a premium. <br><em>Example: a luxury brand for left-handed people, or organic food for health-conscious buyers.</em></li>
+            </ul>
+            <div class="two-col">
+                <div class="col-box">
+                    <h4>✅ Advantages</h4>
+                    <ul>
+                        <li>Deep knowledge of the target segment</li>
+                        <li>Better adapted products/services</li>
+                        <li>Strong loyalty within the niche</li>
+                        <li>Less direct competition from large companies</li>
+                    </ul>
+                </div>
+                <div class="col-box">
+                    <h4>⚠️ Risks</h4>
+                    <ul>
+                        <li>Niche can be too small or disappear</li>
+                        <li>Large companies may enter the niche</li>
+                        <li>Limited growth potential</li>
+                        <li>Dependence on a single segment</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="margin-top:14px;"><strong>🌍 Real examples (Diff. Focus):</strong> Ferrari (sports cars), Rolls-Royce (ultra-luxury), Whole Foods (organic food)</p>
+            <p><strong>🌍 Real examples (Cost Focus):</strong> Southwest Airlines (regional low-cost), local budget supermarkets</p>
+        </div>
+
+
+        <h2>📊 Comparing the Three Strategies</h2>
+
+        <div class="info-box yellow">
+            <table style="width:100%; font-size:14px; border-collapse:collapse;">
+                <thead>
+                    <tr style="background:#2B5797; color:white;">
+                        <th style="padding:10px; text-align:left; border:1px solid #ccc;">Criteria</th>
+                        <th style="padding:10px; text-align:center; border:1px solid #ccc;">💰 Cost Leadership</th>
+                        <th style="padding:10px; text-align:center; border:1px solid #ccc;">✨ Differentiation</th>
+                        <th style="padding:10px; text-align:center; border:1px solid #ccc;">🎯 Focus</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding:9px; border:1px solid #ccc; font-weight:700;">Target market</td>
+                        <td style="padding:9px; border:1px solid #ccc; text-align:center;">Broad (all customers)</td>
+                        <td style="padding:9px; border:1px solid #ccc; text-align:center;">Broad (all customers)</td>
+                        <td style="padding:9px; border:1px solid #ccc; text-align:center;">Narrow (one segment)</td>
+                    </tr>
+                    <tr style="background:#f9f9f9;">
+                        <td style="padding:9px; border:1px solid #ccc; font-weight:700;">Main advantage</td>
+                        <td style="padding:9px; border:1px solid #ccc; text-align:center;">Lowest cost</td>
+                        <td style="padding:9px; border:1px solid #ccc; text-align:center;">Unique product</td>
+                        <td style="padding:9px; border:1px solid #ccc; text-align:center;">Best fit for segment</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:9px; border:1px solid #ccc; font-weight:700;">Price</td>
+                        <td style="padding:9px; border:1px solid #ccc; text-align:center;">Low / competitive</td>
+                        <td style="padding:9px; border:1px solid #ccc; text-align:center;">High (premium)</td>
+                        <td style="padding:9px; border:1px solid #ccc; text-align:center;">Low OR high</td>
+                    </tr>
+                    <tr style="background:#f9f9f9;">
+                        <td style="padding:9px; border:1px solid #ccc; font-weight:700;">Key focus</td>
+                        <td style="padding:9px; border:1px solid #ccc; text-align:center;">Efficiency, scale</td>
+                        <td style="padding:9px; border:1px solid #ccc; text-align:center;">Innovation, brand</td>
+                        <td style="padding:9px; border:1px solid #ccc; text-align:center;">Customer knowledge</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:9px; border:1px solid #ccc; font-weight:700;">Example</td>
+                        <td style="padding:9px; border:1px solid #ccc; text-align:center;">Walmart, IKEA</td>
+                        <td style="padding:9px; border:1px solid #ccc; text-align:center;">Apple, Mercedes</td>
+                        <td style="padding:9px; border:1px solid #ccc; text-align:center;">Ferrari, Whole Foods</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>🔗 Link with Porter's Five Forces</h2>
+
+        <div class="info-box purple">
+            <h3>💡 How Generic Strategies Help Deal with the Five Forces</h3>
+            <p>Each generic strategy helps the company deal with competitive threats from Porter's Five Forces:</p>
+            <ul>
+                <li><strong>Cost Leadership</strong> → Protects against <em>buyer power</em> (you can afford to lower prices) and <em>new entrants</em> (hard to match your low costs)</li>
+                <li><strong>Differentiation</strong> → Protects against <em>substitutes</em> (your product is unique) and <em>rivalry</em> (customers are loyal to your brand)</li>
+                <li><strong>Focus</strong> → Protects against <em>rivalry</em> in your niche (large competitors ignore your segment) and builds strong customer <em>loyalty</em></li>
+            </ul>
+            <p style="margin-top:10px;"><strong>Remember:</strong> The goal of a generic strategy is to create a competitive advantage that helps the company earn <em>above-average profits</em>, even in a competitive industry.</p>
+        </div>
+
+        <h2>🏢 MOROCCAN EXAMPLES </h2>
+
+        <div class="company-example blue">
+            <h3>Generic Strategies in the Moroccan Market</h3>
+
+            <h4>💰 Cost Leadership: Label'Vie / BIM <span class="strategy-badge badge-cost">COST LEADERSHIP</span></h4>
+            <ul>
+                <li><strong>Strategy:</strong> Offer the lowest prices on everyday products to a broad market (all Moroccan consumers)</li>
+                <li><strong>How:</strong>
+                    <ul style="margin-top:5px;">
+                        <li>Large buying volumes → better negotiation with suppliers</li>
+                        <li>Standardized products with few extras (especially BIM)</li>
+                        <li>Efficient supply chain and distribution network</li>
+                        <li>Strict cost control in operations</li>
+                    </ul>
+                </li>
+                <li><strong>Result:</strong> Attracts price-sensitive customers who want good value for money</li>
+            </ul>
+
+            <h4>✨ Differentiation: Attijariwafa Bank <span class="strategy-badge badge-diff">DIFFERENTIATION</span></h4>
+            <ul>
+                <li><strong>Strategy:</strong> Offer a wide range of unique, high-quality banking services across a broad market (individuals and businesses)</li>
+                <li><strong>How:</strong>
+                    <ul style="margin-top:5px;">
+                        <li>Strong brand reputation and trust</li>
+                        <li>Digital banking innovation (app, online services)</li>
+                        <li>Wide network of branches and ATMs across Morocco and Africa</li>
+                        <li>Premium products for high-income clients</li>
+                    </ul>
+                </li>
+                <li><strong>Result:</strong> Customers accept to pay higher fees for quality and reliability</li>
+            </ul>
+
+            <h4>🎯 Differentiation Focus: La Mamounia Palace (Marrakech) <span class="strategy-badge badge-focus">FOCUS</span></h4>
+            <ul>
+                <li><strong>Strategy:</strong> Offer ultra-luxury hospitality exclusively for wealthy international tourists (a narrow, high-end niche)</li>
+                <li><strong>How:</strong>
+                    <ul style="margin-top:5px;">
+                        <li>Exclusive, highly personalized service</li>
+                        <li>Unique Moroccan design with modern luxury elements</li>
+                        <li>Very high prices — not accessible to the general public</li>
+                        <li>Deep focus on one customer segment: wealthy travelers</li>
+                    </ul>
+                </li>
+                <li><strong>Result:</strong> Strong loyalty from the target niche; large competitors cannot easily imitate this level of exclusivity</li>
+            </ul>
+        </div>
+
+        <h2>📋 How to Choose the Right Strategy</h2>
+
+        <div class="info-box yellow">
+            <h3>📋 Step-by-Step Approach:</h3>
+            <p><strong>Step 1:</strong> Analyze your industry using Porter's Five Forces (how competitive is it?)</p>
+            <p><strong>Step 2:</strong> Identify your company's <strong>strengths and resources</strong> (what are you good at?)</p>
+            <p><strong>Step 3:</strong> Decide: Is your strength in <strong>producing at low cost</strong> or in <strong>creating something unique</strong>?</p>
+            <p><strong>Step 4:</strong> Decide: Do you want to target <strong>all customers</strong> or focus on <strong>one specific group</strong>?</p>
+            <p><strong>Step 5:</strong> Choose <strong>ONE</strong> strategy and implement it consistently throughout the company.</p>
+            <p style="margin-top: 15px;"><strong>💡 Remember:</strong> There is no "best" strategy. The right strategy depends on your industry, your resources, and your customers. But you MUST choose one clearly!</p>
+        </div>
+
+        <h2>📚 VOCABULARY BOX</h2>
+
+        <table class="vocab-table">
+            <thead>
+                <tr>
+                    <th>English</th>
+                    <th>Français</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Generic strategy</td><td>Stratégie générique</td></tr>
+                <tr><td>Competitive advantage</td><td>Avantage concurrentiel</td></tr>
+                <tr><td>Sustainable advantage</td><td>Avantage durable</td></tr>
+                <tr><td>Cost leadership</td><td>Domination par les coûts</td></tr>
+                <tr><td>Differentiation</td><td>Différenciation</td></tr>
+                <tr><td>Focus / Niche strategy</td><td>Focalisation / Stratégie de niche</td></tr>
+                <tr><td>Stuck in the middle</td><td>Coincé au milieu</td></tr>
+                <tr><td>Broad market</td><td>Marché large</td></tr>
+                <tr><td>Narrow market / Niche</td><td>Marché étroit / Niche</td></tr>
+                <tr><td>Market segment</td><td>Segment de marché</td></tr>
+                <tr><td>Premium price</td><td>Prix premium / Prix élevé</td></tr>
+                <tr><td>Low cost</td><td>Bas coût / Faible coût</td></tr>
+                <tr><td>Economies of scale</td><td>Économies d'échelle</td></tr>
+                <tr><td>Brand image / Brand loyalty</td><td>Image de marque / Fidélité à la marque</td></tr>
+                <tr><td>Target customer</td><td>Client cible</td></tr>
+                <tr><td>Profitability</td><td>Rentabilité / Profitabilité</td></tr>
+                <tr><td>Above-average profit</td><td>Profit supérieur à la moyenne</td></tr>
+                <tr><td>Price war</td><td>Guerre des prix</td></tr>
+                <tr><td>Imitation</td><td>Imitation</td></tr>
+                <tr><td>Innovation</td><td>Innovation</td></tr>
+                <tr><td>Supply chain</td><td>Chaîne d'approvisionnement</td></tr>
+                <tr><td>Standardized product</td><td>Produit standardisé</td></tr>
+                <tr><td>Customer loyalty</td><td>Fidélité des clients</td></tr>
+                <tr><td>Switching cost</td><td>Coût de transfert</td></tr>
+                <tr><td>Entry barrier</td><td>Barrière à l'entrée</td></tr>
+                <tr><td>To compete</td><td>Concurrencer / Rivaliser</td></tr>
+                <tr><td>To differentiate</td><td>Différencier</td></tr>
+                <tr><td>To target</td><td>Cibler</td></tr>
+                <tr><td>To reduce costs</td><td>Réduire les coûts</td></tr>
+                <tr><td>To gain market share</td><td>Gagner des parts de marché</td></tr>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>

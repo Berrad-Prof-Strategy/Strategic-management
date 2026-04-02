@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ansoff Matrix - Growth Strategies</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary-blue: #2B5797;
+            --light-blue: #D5E8F0;
+            --light-green: #E8F5E9;
+            --light-orange: #FFF3E0;
+            --light-purple: #F3E5F5;
+            --yellow-box: #FFF9E6;
+            --light-red: #FFEBEE;
+            --gray-text: #555555;
+            --border-color: #CCCCCC;
+        }
+
+        body {
+            font-family: 'Source Sans 3', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 20px 30px;
+            margin: -40px -40px 30px -40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+        }
+
+        .header .icon { font-size: 32px; }
+
+        h2 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 22px;
+            font-weight: 700;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-intro {
+            font-size: 16px;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .definition-box {
+            background: var(--yellow-box);
+            border: 1px solid #F5E6B3;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+
+        .definition-box p {
+            font-size: 16px;
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .definition-box ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        .definition-box li {
+            font-size: 15px;
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .definition-box .french {
+            font-style: italic;
+            color: var(--gray-text);
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        /* Ansoff Matrix visual */
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0 8px 0;
+            font-size: 15px;
+        }
+
+        .matrix-table th, .matrix-table td {
+            border: 2px solid var(--primary-blue);
+            padding: 18px 16px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .matrix-table .corner { background: white; border-color: white; }
+
+        .matrix-table .axis-header {
+            background: var(--primary-blue);
+            color: white;
+            font-weight: 700;
+            font-family: 'Merriweather', serif;
+            font-size: 14px;
+        }
+
+        .cell-mp   { background: #C8E6C9; } /* Market Penetration - green */
+        .cell-pd   { background: #BBDEFB; } /* Product Development - blue */
+        .cell-md   { background: #FFE0B2; } /* Market Development - orange */
+        .cell-div  { background: #E1BEE7; } /* Diversification - purple */
+
+        .risk-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-top: 6px;
+        }
+
+        .risk-low    { background: #C8E6C9; color: #2E7D32; }
+        .risk-medium { background: #FFE082; color: #F57F17; }
+        .risk-high   { background: #FFCCBC; color: #BF360C; }
+        .risk-very   { background: #FFCDD2; color: #C62828; }
+
+        .matrix-caption {
+            font-size: 13px;
+            font-style: italic;
+            color: var(--gray-text);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        /* Strategy cards */
+        .strategy-card {
+            border: 2px solid var(--border-color);
+            padding: 22px;
+            margin-bottom: 22px;
+            border-radius: 4px;
+        }
+
+        .strategy-card.green  { background: var(--light-green);  border-color: #4CAF50; }
+        .strategy-card.blue   { background: var(--light-blue);   border-color: var(--primary-blue); }
+        .strategy-card.orange { background: var(--light-orange); border-color: #FF9800; }
+        .strategy-card.purple { background: var(--light-purple); border-color: #9C27B0; }
+
+        .strategy-card .emoji {
+            font-size: 28px;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .strategy-card h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+        }
+
+        .strategy-card .french-name {
+            font-size: 14px;
+            font-style: italic;
+            color: var(--gray-text);
+            margin-bottom: 12px;
+        }
+
+        .strategy-card p {
+            font-size: 15px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .strategy-card ul {
+            margin-left: 18px;
+            margin-top: 6px;
+        }
+
+        .strategy-card li {
+            font-size: 14px;
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .strategy-card strong { font-weight: 700; }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 12px;
+        }
+
+        .col-box {
+            background: rgba(255,255,255,0.65);
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 4px;
+            padding: 12px;
+        }
+
+        .col-box h4 {
+            font-family: 'Merriweather', serif;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--primary-blue);
+        }
+
+        .col-box ul { margin-left: 15px; }
+        .col-box li { font-size: 13px; margin-bottom: 5px; }
+
+        /* Info boxes */
+        .info-box {
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .info-box.yellow  { background: var(--yellow-box); border-color: #F5E6B3; }
+        .info-box.purple  { background: var(--light-purple); }
+        .info-box.blue    { background: var(--light-blue); border-color: var(--primary-blue); }
+        .info-box.green   { background: var(--light-green); border-color: #4CAF50; }
+
+        .info-box h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .info-box p  { font-size: 15px; margin-bottom: 10px; line-height: 1.6; }
+        .info-box ul { margin-left: 20px; margin-top: 8px; }
+        .info-box li { font-size: 15px; margin-bottom: 8px; line-height: 1.5; }
+        .info-box strong { font-weight: 700; }
+
+        /* Company example */
+        .company-example {
+            border: 2px solid var(--primary-blue);
+            background: var(--light-blue);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+
+        .company-example h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .company-example h4 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-blue);
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 18px;
+            margin-bottom: 8px;
+        }
+
+        .company-example ul { margin-left: 20px; }
+        .company-example li { font-size: 15px; margin-bottom: 7px; line-height: 1.5; }
+
+        .strategy-badge {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 12px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        .badge-mp   { background: #C8E6C9; color: #2E7D32; }
+        .badge-pd   { background: #BBDEFB; color: #1565C0; }
+        .badge-md   { background: #FFE0B2; color: #E65100; }
+        .badge-div  { background: #E1BEE7; color: #6A1B9A; }
+
+        /* Vocab table */
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .vocab-table th {
+            background: var(--primary-blue);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        .vocab-table td {
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .vocab-table tr:nth-child(even) { background: #f9f9f9; }
+
+        .axis-label-v {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-family: 'Merriweather', serif;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <h1>The Ansoff Matrix — Growth Strategies</h1>
+        <div class="icon">🚀</div>
+    </div>
+
+    <!-- DEFINITION -->
+    <h2>📖 What is the Ansoff Matrix?</h2>
+
+    <div class="definition-box">
+        <p>The <strong>Ansoff Matrix</strong> (also called the <strong>Product-Market Growth Matrix</strong>) is a strategic planning tool created by Igor Ansoff in <strong>1957</strong>. It helps companies decide how to <strong>grow</strong> their business.</p>
+        <p>The matrix is based on a simple question: <strong>To grow, should we focus on existing or new products? And on existing or new markets?</strong></p>
+        <p>This gives <strong>four possible growth strategies</strong>, each with a different level of risk:</p>
+        <ul>
+            <li><strong>Market Penetration</strong> — existing product + existing market (lowest risk)</li>
+            <li><strong>Product Development</strong> — new product + existing market</li>
+            <li><strong>Market Development</strong> — existing product + new market</li>
+            <li><strong>Diversification</strong> — new product + new market (highest risk)</li>
+        </ul>
+        <p class="french"><em>Matrice d'Ansoff : outil d'aide à la décision pour choisir une stratégie de croissance en combinant produits (existants ou nouveaux) et marchés (existants ou nouveaux).</em></p>
+    </div>
+
+    <!-- MATRIX VISUAL -->
+    <h2>🗺️ The Ansoff Matrix</h2>
+
+    <p class="section-intro">The matrix has two axes: <strong>Products</strong> (existing or new) on one side, and <strong>Markets</strong> (existing or new) on the other. The further you move away from what you already know, the <strong>higher the risk</strong>.</p>
+
+    <table class="matrix-table">
+        <tr>
+            <td class="corner" style="width:70px;"></td>
+            <td class="corner"></td>
+            <td class="axis-header">📦 Existing Products</td>
+            <td class="axis-header">🆕 New Products</td>
+        </tr>
+        <tr>
+            <td rowspan="2" style="background:#f0f4ff; border:2px solid var(--primary-blue); text-align:center; width:60px;">
+                <span class="axis-label-v">MARKETS</span>
+            </td>
+            <td class="axis-header">🏠 Existing Markets</td>
+            <td class="cell-mp" style="padding:20px;">
+                <strong>MARKET PENETRATION</strong><br>
+                <em style="font-size:13px;">Pénétration de marché</em><br>
+                <span class="risk-badge risk-low">⬇ LOWEST RISK</span>
+            </td>
+            <td class="cell-pd" style="padding:20px;">
+                <strong>PRODUCT DEVELOPMENT</strong><br>
+                <em style="font-size:13px;">Développement de produit</em><br>
+                <span class="risk-badge risk-medium">➡ MEDIUM RISK</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="axis-header">🌍 New Markets</td>
+            <td class="cell-md" style="padding:20px;">
+                <strong>MARKET DEVELOPMENT</strong><br>
+                <em style="font-size:13px;">Développement de marché</em><br>
+                <span class="risk-badge risk-high">⬆ MEDIUM-HIGH RISK</span>
+            </td>
+            <td class="cell-div" style="padding:20px;">
+                <strong>DIVERSIFICATION</strong><br>
+                <em style="font-size:13px;">Diversification</em><br>
+                <span class="risk-badge risk-very">⬆⬆ HIGHEST RISK</span>
+            </td>
+        </tr>
+    </table>
+    <p class="matrix-caption">💡 The further from the top-left corner, the greater the risk — because you move away from what you already know.</p>
+
+    <!-- THE FOUR STRATEGIES -->
+    <h2>🎯 The Four Growth Strategies</h2>
+
+    <!-- 1. Market Penetration -->
+    <div class="strategy-card green">
+        <h3><span class="emoji">📈</span> Strategy 1: Market Penetration</h3>
+        <p class="french-name">Pénétration de marché</p>
+        <p><strong>Definition:</strong> Sell <strong>more of the same product</strong> to <strong>the same customers</strong> in the same market. The company does not change anything — it just tries to grow within what it already does.</p>
+        <p><strong>Key question:</strong> How can we increase our sales with our current products to our current customers?</p>
+        <p><strong>How to do it:</strong></p>
+        <ul>
+            <li>Lower prices to attract more buyers</li>
+            <li>Invest more in <strong>advertising and promotion</strong></li>
+            <li>Improve customer loyalty programs (rewards, discounts)</li>
+            <li>Increase the frequency of purchase (customers buy more often)</li>
+            <li>Win customers from competitors (steal market share)</li>
+            <li>Expand distribution channels (sell in more stores)</li>
+        </ul>
+        <div class="two-col">
+            <div class="col-box">
+                <h4>✅ Advantages</h4>
+                <ul>
+                    <li>Lowest risk — you know the product and market</li>
+                    <li>No need for new capabilities</li>
+                    <li>Uses existing resources efficiently</li>
+                    <li>Builds on established brand</li>
+                </ul>
+            </div>
+            <div class="col-box">
+                <h4>⚠️ Limits</h4>
+                <ul>
+                    <li>Limited growth if market is saturated</li>
+                    <li>Price wars can reduce margins</li>
+                    <li>Market may already be at maximum size</li>
+                    <li>Does not prepare for the future</li>
+                </ul>
+            </div>
+        </div>
+        <p style="margin-top:14px;"><strong>🌍 Real examples:</strong> Dalaa running more TV ads to increase sales in Morocco; Marjane launching a loyalty card to get existing customers to visit more often.</p>
+    </div>
+
+    <!-- 2. Product Development -->
+    <div class="strategy-card blue">
+        <h3><span class="emoji">🔬</span> Strategy 2: Product Development</h3>
+        <p class="french-name">Développement de produit</p>
+        <p><strong>Definition:</strong> Create <strong>new products or services</strong> to sell to <strong>your existing customers</strong> in the same market. You keep the same customers but offer them something new.</p>
+        <p><strong>Key question:</strong> What new products could we offer to our current customers?</p>
+        <p><strong>How to do it:</strong></p>
+        <ul>
+            <li>Invest in <strong>Research and Development (R&D)</strong></li>
+            <li>Launch new versions or extensions of existing products</li>
+            <li>Add new features or improved quality to current products</li>
+            <li>Develop complementary products (accessories, add-ons)</li>
+            <li>Acquire new technology or partner with innovators</li>
+            <li>Listen to customer feedback to identify unmet needs</li>
+        </ul>
+        <div class="two-col">
+            <div class="col-box">
+                <h4>✅ Advantages</h4>
+                <ul>
+                    <li>You already know your customers well</li>
+                    <li>Builds on existing customer relationships</li>
+                    <li>Can revive interest in the brand</li>
+                    <li>Responds to changing customer needs</li>
+                </ul>
+            </div>
+            <div class="col-box">
+                <h4>⚠️ Risks</h4>
+                <ul>
+                    <li>High R&D costs</li>
+                    <li>New product may fail</li>
+                    <li>Takes time to develop</li>
+                    <li>May cannibalize existing products</li>
+                </ul>
+            </div>
+        </div>
+        <p style="margin-top:14px;"><strong>🌍 Real examples:</strong> Apple launching the Apple Watch to its existing iPhone customers; Centrale Danone Morocco introducing new flavored yogurt varieties for Moroccan consumers.</p>
+    </div>
+
+    <!-- 3. Market Development -->
+    <div class="strategy-card orange">
+        <h3><span class="emoji">🌍</span> Strategy 3: Market Development</h3>
+        <p class="french-name">Développement de marché</p>
+        <p><strong>Definition:</strong> Sell your <strong>existing products</strong> to <strong>new customers</strong> or in <strong>new markets</strong>. The product stays the same — you expand to new geographic areas, new customer segments, or new uses.</p>
+        <p><strong>Key question:</strong> Who else could buy our current product that we are not reaching yet?</p>
+        <p><strong>How to do it:</strong></p>
+        <ul>
+            <li><strong>Geographic expansion:</strong> Enter new countries or regions</li>
+            <li><strong>New customer segments:</strong> Target a different age group, gender, or income level</li>
+            <li><strong>New distribution channels:</strong> Sell online if you were only in stores, or vice versa</li>
+            <li><strong>New uses for the product:</strong> Show how it can be used differently</li>
+            <li>Adapt packaging or marketing for a new audience</li>
+        </ul>
+        <div class="two-col">
+            <div class="col-box">
+                <h4>✅ Advantages</h4>
+                <ul>
+                    <li>No need to develop new products</li>
+                    <li>Can leverage existing production capacity</li>
+                    <li>High growth potential (new markets)</li>
+                    <li>Reduces dependence on one market</li>
+                </ul>
+            </div>
+            <div class="col-box">
+                <h4>⚠️ Risks</h4>
+                <ul>
+                    <li>New markets are unknown and uncertain</li>
+                    <li>Cultural or regulatory differences</li>
+                    <li>Strong local competitors in new markets</li>
+                    <li>Needs investment in new marketing</li>
+                </ul>
+            </div>
+        </div>
+        <p style="margin-top:14px;"><strong>🌍 Real examples:</strong> Royal Air Maroc expanding to new African routes; a Moroccan cosmetics brand starting to sell in France targeting the Moroccan diaspora.</p>
+    </div>
+
+    <!-- 4. Diversification -->
+    <div class="strategy-card purple">
+        <h3><span class="emoji">🎲</span> Strategy 4: Diversification</h3>
+        <p class="french-name">Diversification</p>
+        <p><strong>Definition:</strong> Launch <strong>new products</strong> into <strong>new markets</strong>. This is the most ambitious and most risky strategy because the company enters completely unknown territory — both the product and the market are new.</p>
+        <p><strong>Key question:</strong> What totally new business could we enter to grow?</p>
+        <p><strong>Two types of diversification:</strong></p>
+        <ul>
+            <li><strong>Related diversification:</strong> The new activity is connected to the existing business. <br><em>Example: an airline company creating a hotel chain (both are tourism).</em></li>
+            <li><strong>Unrelated diversification (conglomerate):</strong> The new activity has no link to the current business. <br><em>Example: a food company entering the banking sector.</em></li>
+        </ul>
+        <p><strong>Why diversify?</strong></p>
+        <ul>
+            <li>Reduce dependence on one product or market</li>
+            <li>Spread risk across different industries</li>
+            <li>Exploit a new growth opportunity</li>
+            <li>Use excess cash or resources</li>
+        </ul>
+        <div class="two-col">
+            <div class="col-box">
+                <h4>✅ Advantages</h4>
+                <ul>
+                    <li>Spreads business risk</li>
+                    <li>Access to new profit sources</li>
+                    <li>Can create synergies (related)</li>
+                    <li>Protects against decline of core business</li>
+                </ul>
+            </div>
+            <div class="col-box">
+                <h4>⚠️ Risks</h4>
+                <ul>
+                    <li>Very high risk — unknown product AND market</li>
+                    <li>Requires major investment</li>
+                    <li>Management distraction from core business</li>
+                    <li>High failure rate, especially unrelated</li>
+                </ul>
+            </div>
+        </div>
+        <p style="margin-top:14px;"><strong>🌍 Real examples:</strong> Virgin Group (music → airlines → banking → space); ONA Group Morocco (mining, food, finance, distribution — classic conglomerate diversification).</p>
+    </div>
+
+    <!-- COMPARISON TABLE -->
+    <h2>📊 Comparing the Four Strategies</h2>
+
+    <div class="info-box yellow">
+        <table style="width:100%; font-size:14px; border-collapse:collapse;">
+            <thead>
+                <tr style="background:#2B5797; color:white;">
+                    <th style="padding:10px; text-align:left; border:1px solid #ccc;">Strategy</th>
+                    <th style="padding:10px; text-align:center; border:1px solid #ccc;">Products</th>
+                    <th style="padding:10px; text-align:center; border:1px solid #ccc;">Markets</th>
+                    <th style="padding:10px; text-align:center; border:1px solid #ccc;">Risk Level</th>
+                    <th style="padding:10px; text-align:center; border:1px solid #ccc;">Best when...</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="padding:9px; border:1px solid #ccc; font-weight:700;">📈 Market Penetration</td>
+                    <td style="padding:9px; border:1px solid #ccc; text-align:center;">Existing</td>
+                    <td style="padding:9px; border:1px solid #ccc; text-align:center;">Existing</td>
+                    <td style="padding:9px; border:1px solid #ccc; text-align:center;"><span class="risk-badge risk-low">LOWEST</span></td>
+                    <td style="padding:9px; border:1px solid #ccc;">Market is not yet saturated</td>
+                </tr>
+                <tr style="background:#f9f9f9;">
+                    <td style="padding:9px; border:1px solid #ccc; font-weight:700;">🔬 Product Development</td>
+                    <td style="padding:9px; border:1px solid #ccc; text-align:center;">New</td>
+                    <td style="padding:9px; border:1px solid #ccc; text-align:center;">Existing</td>
+                    <td style="padding:9px; border:1px solid #ccc; text-align:center;"><span class="risk-badge risk-medium">MEDIUM</span></td>
+                    <td style="padding:9px; border:1px solid #ccc;">Strong R&D capability</td>
+                </tr>
+                <tr>
+                    <td style="padding:9px; border:1px solid #ccc; font-weight:700;">🌍 Market Development</td>
+                    <td style="padding:9px; border:1px solid #ccc; text-align:center;">Existing</td>
+                    <td style="padding:9px; border:1px solid #ccc; text-align:center;">New</td>
+                    <td style="padding:9px; border:1px solid #ccc; text-align:center;"><span class="risk-badge risk-high">MEDIUM-HIGH</span></td>
+                    <td style="padding:9px; border:1px solid #ccc;">Successful product to export</td>
+                </tr>
+                <tr style="background:#f9f9f9;">
+                    <td style="padding:9px; border:1px solid #ccc; font-weight:700;">🎲 Diversification</td>
+                    <td style="padding:9px; border:1px solid #ccc; text-align:center;">New</td>
+                    <td style="padding:9px; border:1px solid #ccc; text-align:center;">New</td>
+                    <td style="padding:9px; border:1px solid #ccc; text-align:center;"><span class="risk-badge risk-very">HIGHEST</span></td>
+                    <td style="padding:9px; border:1px solid #ccc;">Core market is declining</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- HOW TO USE -->
+    <h2>🛠️ How to Use the Ansoff Matrix</h2>
+
+    <div class="info-box yellow">
+        <h3>📋 Step-by-Step Approach:</h3>
+        <p><strong>Step 1:</strong> Analyze your current situation — what products do you sell, and in which markets?</p>
+        <p><strong>Step 2:</strong> Identify your growth objectives — how much do you want to grow, and how fast?</p>
+        <p><strong>Step 3:</strong> Assess your resources and risk tolerance — how much can you invest? How much risk can you take?</p>
+        <p><strong>Step 4:</strong> Evaluate the four strategies and their risks using the matrix.</p>
+        <p><strong>Step 5:</strong> Choose the most appropriate strategy (or a combination of strategies).</p>
+        <p style="margin-top:14px;"><strong>💡 Key principle:</strong> Most companies should start with <strong>Market Penetration</strong> (the safest option) before moving to riskier strategies. Diversification is usually a last resort or reserved for companies with strong financial resources.</p>
+    </div>
+
+    <!-- LINK TO PORTER -->
+    <div class="info-box purple">
+        <h3>🔗 Link with Porter's Generic Strategies</h3>
+        <p>The Ansoff Matrix tells you <strong>where to grow</strong> (which product-market combination). Porter's Generic Strategies tell you <strong>how to compete</strong> once you are in that market.</p>
+        <ul>
+            <li><strong>Market Penetration</strong> often pairs with <em>Cost Leadership</em> (lower prices to gain market share)</li>
+            <li><strong>Product Development</strong> often pairs with <em>Differentiation</em> (new, unique products)</li>
+            <li><strong>Market Development</strong> can pair with <em>Focus</em> (targeting a specific new segment)</li>
+            <li><strong>Diversification</strong> requires defining a new competitive strategy entirely for the new business</li>
+        </ul>
+        <p style="margin-top:10px;"><strong>Together, these two tools help managers make complete strategic decisions: WHERE to grow, and HOW to win.</strong></p>
+    </div>
+
+    <!-- MOROCCAN EXAMPLE -->
+    <h2>🏢 MOROCCAN EXAMPLE: OCP Group</h2>
+
+    <div class="company-example">
+        <h3>Ansoff Matrix Analysis: OCP Group (Office Chérifien des Phosphates)</h3>
+        <p style="font-size:15px; margin-bottom:10px;"><em>OCP is Morocco's state-owned phosphate company and the world's largest phosphate exporter. It is a perfect example of a company using all four Ansoff strategies over time.</em></p>
+
+        <h4>📈 Market Penetration <span class="strategy-badge badge-mp">LOWEST RISK</span></h4>
+        <ul>
+            <li><strong>Action:</strong> Increase sales of phosphate rock and fertilizers to <em>existing customers</em> (Europe, India, Brazil) in the <em>same global fertilizer market</em></li>
+            <li><strong>How:</strong> Competitive pricing, long-term supply contracts, improving delivery logistics</li>
+            <li><strong>Goal:</strong> Increase market share in countries where OCP already operates</li>
+        </ul>
+
+        <h4>🔬 Product Development <span class="strategy-badge badge-pd">MEDIUM RISK</span></h4>
+        <ul>
+            <li><strong>Action:</strong> Develop new fertilizer products adapted to specific soil types in Africa</li>
+            <li><strong>How:</strong> OCP's research platform (OCP Africa) develops customized, locally-adapted fertilizers (e.g., tailored blends for Kenyan or Senegalese soils)</li>
+            <li><strong>Goal:</strong> Sell more advanced, higher-value products to farmers who are already customers</li>
+        </ul>
+
+        <h4>🌍 Market Development <span class="strategy-badge badge-md">MEDIUM-HIGH RISK</span></h4>
+        <ul>
+            <li><strong>Action:</strong> Enter new African markets with existing phosphate fertilizer products</li>
+            <li><strong>How:</strong> OCP expanded its presence in sub-Saharan Africa (Ethiopia, Nigeria, Tanzania) — new geographic markets, same core products</li>
+            <li><strong>Goal:</strong> Reach smallholder farmers in Africa who were previously not served</li>
+        </ul>
+
+        <h4>🎲 Diversification <span class="strategy-badge badge-div">HIGHEST RISK</span></h4>
+        <ul>
+            <li><strong>Action:</strong> Entry into green hydrogen and renewable energy production — a completely new industry</li>
+            <li><strong>How:</strong> OCP is investing in solar energy and green ammonia production in Morocco (new product, new energy market)</li>
+            <li><strong>Goal:</strong> Prepare for the future energy transition and reduce carbon footprint — a strategic bet on a new sector</li>
+        </ul>
+
+        <p style="margin-top:15px; font-size:15px;"><strong>📊 Conclusion:</strong> <em>OCP illustrates how a large company can pursue multiple Ansoff strategies simultaneously — consolidating existing markets while expanding into new products and geographies.</em></p>
+    </div>
+
+    <!-- VOCAB TABLE -->
+    <h2>📚 VOCABULARY BOX</h2>
+
+    <table class="vocab-table">
+        <thead>
+            <tr>
+                <th>English</th>
+                <th>Français</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Growth strategy</td><td>Stratégie de croissance</td></tr>
+            <tr><td>Market Penetration</td><td>Pénétration de marché</td></tr>
+            <tr><td>Product Development</td><td>Développement de produit</td></tr>
+            <tr><td>Market Development</td><td>Développement de marché</td></tr>
+            <tr><td>Diversification</td><td>Diversification</td></tr>
+            <tr><td>Related diversification</td><td>Diversification liée / reliée</td></tr>
+            <tr><td>Unrelated diversification</td><td>Diversification non liée / conglomérale</td></tr>
+            <tr><td>Existing market</td><td>Marché existant</td></tr>
+            <tr><td>New market</td><td>Nouveau marché</td></tr>
+            <tr><td>New product</td><td>Nouveau produit</td></tr>
+            <tr><td>Market share</td><td>Part de marché</td></tr>
+            <tr><td>Market saturation</td><td>Saturation du marché</td></tr>
+            <tr><td>Risk level</td><td>Niveau de risque</td></tr>
+            <tr><td>Research and Development (R&D)</td><td>Recherche et développement (R&D)</td></tr>
+            <tr><td>Geographic expansion</td><td>Expansion géographique</td></tr>
+            <tr><td>Customer segment</td><td>Segment de clientèle</td></tr>
+            <tr><td>Distribution channel</td><td>Canal de distribution</td></tr>
+            <tr><td>Brand loyalty</td><td>Fidélité à la marque</td></tr>
+            <tr><td>Synergy</td><td>Synergie</td></tr>
+            <tr><td>Conglomerate</td><td>Conglomérat</td></tr>
+            <tr><td>Core business</td><td>Activité principale / cœur de métier</td></tr>
+            <tr><td>Competitive advantage</td><td>Avantage concurrentiel</td></tr>
+            <tr><td>To grow / growth</td><td>Croître / croissance</td></tr>
+            <tr><td>To expand</td><td>S'étendre / se développer</td></tr>
+            <tr><td>To launch (a product)</td><td>Lancer (un produit)</td></tr>
+            <tr><td>To enter (a market)</td><td>Entrer sur (un marché)</td></tr>
+            <tr><td>To target</td><td>Cibler</td></tr>
+            <tr><td>To invest</td><td>Investir</td></tr>
+            <tr><td>To acquire</td><td>Acquérir</td></tr>
+            <tr><td>To diversify</td><td>Diversifier</td></tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>
